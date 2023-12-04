@@ -1,0 +1,29 @@
+@startuml Klassendiagramm
+interface Parser {
+    +validate(Thesis)
+    +parse(Thesis)
+}
+
+class PdfParser implements Parser
+
+class JsonParser implements Parser {
+    +validateSchema()
+}
+
+class Controller
+
+class AiController
+
+class AiService
+
+class AiAdapter
+
+class ResponseService
+
+Controller "1" -- "1" PdfParser
+Controller "1" -- "0 .. 1" JsonParser
+Controller "1" -- "1" AiController
+AiController "1" -- "1" AiService
+AiController "1" -- "1" AiAdapter
+Controller "1" -- "1" ResponseService
+@enduml
