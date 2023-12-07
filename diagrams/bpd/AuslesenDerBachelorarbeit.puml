@@ -1,0 +1,12 @@
+@startuml GPD-Eingang der Daten vom BachelorChecker
+|AiPlagiarismChecker|
+start
+:Dateien erfolgreich empfangen und validiert;
+fork
+    :PDF-Datei auslesen;
+fork again
+    :JSON-Datei auslesen;
+end fork
+:Dateien erfolgreich ausgelesen;
+end
+@enduml

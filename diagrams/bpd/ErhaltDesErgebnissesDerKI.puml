@@ -1,0 +1,13 @@
+@startuml GPD-Erhalt des Ergebnisses der KI
+|KI|
+start
+:Prompt beantwortet;
+:Antwort senden;
+
+|AiPlagiarismChecker|
+:Antwort erhalten;
+:Antwort überprüfen;
+:Antwort aufbereiten;
+:Antwort erfolgreich aufbereitet;
+end
+@enduml

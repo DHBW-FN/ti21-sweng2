@@ -1,0 +1,10 @@
+@startuml GPD-Übergabe des Ergebnisses an den BachelorChecker
+|AiPlagiarismChecker|
+start
+:Daten in JSON-Format umgewandelt;
+:Antwort an BachelorChecker senden;
+
+|BachelorChecker|
+:Antwort empfangen;
+end
+@enduml

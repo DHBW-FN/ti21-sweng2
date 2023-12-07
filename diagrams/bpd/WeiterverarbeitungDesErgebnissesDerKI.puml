@@ -1,0 +1,8 @@
+@startuml GPD-Weiterverarbeitung des Ergebnisses der KI
+|AiPlagiarismChecker|
+start
+:Antwort erfolgreich aufbereitet;
+:Daten in JSON-Format umwandeln;
+:Daten in JSON-Format umgewandelt;
+end
+@enduml

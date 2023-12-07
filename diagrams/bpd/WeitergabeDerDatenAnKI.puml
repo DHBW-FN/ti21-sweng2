@@ -1,0 +1,10 @@
+@startuml GPD-Weitergabe der Daten an KI
+|AiPlagiarismChecker|
+start
+:Daten erfolgreich aufbereitet;
+:KI Konversation mit Prompt starten;
+
+|KI|
+:Prompt beantwortet;
+end
+@enduml

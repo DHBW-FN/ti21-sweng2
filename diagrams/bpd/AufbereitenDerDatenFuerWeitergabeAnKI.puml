@@ -1,0 +1,8 @@
+@startuml GPD-Aufbereiten der Daten für Weitergabe an KI
+|AiPlagiarismChecker|
+start
+:Dateien erfolgreich ausgelesen;
+:Prompt für Weitergabe an KI erstellen;
+:Daten erfolgreich aufbereitet;
+end
+@enduml

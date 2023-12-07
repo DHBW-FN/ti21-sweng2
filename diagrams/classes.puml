@@ -1,6 +1,14 @@
 @startuml Klassendiagramm
 class PlagiarismCheckResult {
+    List<PlagiarismSource> sources
+    -getPlagiarismCoverage(): int
     +toJson(jsonResponseSchema):
+}
+
+class PlagiarismSource {
+    String isbn
+    List<(int, int)> occurrences
+    int coverage
 }
 
 interface Parser {
@@ -58,4 +66,6 @@ ResponseService "1" o-- "1" JsonParser
 PlagiarismCheckResult -- AiController
 PlagiarismCheckResult -- AiService
 PlagiarismCheckResult -- ResponseService
+
+PlagiarismCheckResult "1" o-- "*" PlagiarismSource
 @enduml

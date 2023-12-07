@@ -1,0 +1,25 @@
+@startuml Systemablaufmodell
+|BachelorChecker|
+start
+
+|AiPlagiarismChecker|
+:1 Eingang der Daten;
+fork
+    :2 Auslesen der Bachelorarbeit;
+fork again
+    :3 Auslesen der Zusatzinformationen;
+end fork
+:4 Aufbereiten der Daten für Weitergabe an KI;
+:5 Weitergabe der Daten an KI;
+
+|KI|
+:6 Durchführen der Plagiatsprüfung;
+
+|AiPlagiarismChecker|
+:7 Erhalt des Ergebnisses der KI;
+:8 Weiterverarbeitung des Ergebnisses der KI;
+:9 Übergabe des Ergebnisses an den BachelorChecker;
+
+|BachelorChecker|
+stop
+@enduml

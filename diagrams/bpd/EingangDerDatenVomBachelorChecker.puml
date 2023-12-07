@@ -1,0 +1,25 @@
+@startuml GPD-Eingang der Daten vom BachelorChecker
+|BachelorChecker|
+start
+:Senden der Daten;
+
+|AiPlagiarismChecker|
+:Erhalt der Daten;
+fork
+    :PDF-Datei validieren;
+    if (PDF-Datei valide?) then (ja)
+    else (nein)
+        :Fehlermeldung;
+        stop
+    endif
+fork again
+    :JSON-Datei validieren;
+    if (JSON-Datei valide?) then (ja)
+    else (nein)
+        :Fehlermeldung;
+        stop
+    endif
+end fork
+:Dateien erfolgreich empfangen und validiert;
+end
+@enduml
