@@ -20,8 +20,6 @@ class JsonParser implements Parser {
 }
 
 class Controller {
-    Parser pdfParser
-    Parser jsonParser
     +checkPlagiarism(Thesis, AdditionalData): Json
 }
 
@@ -39,16 +37,25 @@ class AiAdapter {
     +chat(String): String
 }
 
+class ResponseController {
+    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): Json
+}
+
 class ResponseService {
     Schema jsonResponseSchema
     +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): Json
 }
 
-Controller "1" -- "1" PdfParser
-Controller "1" -- "1" JsonParser
-Controller "1" -- "1" AiController
-AiController "1" -- "1" AiService
-AiService "1" -- "1" AiAdapter
-Controller "1" -- "1" ResponseService
-ResponseService "1" -- "1" JsonParser
+Controller "1" o-- "1" PdfParser
+Controller "1" o-- "1" JsonParser
+Controller "1" o-- "1" AiController
+AiController "1" o-- "1" AiService
+AiService "1" o-- "1" AiAdapter
+Controller "1" o-- "1" ResponseController
+ResponseController "1" o-- "1" ResponseService
+ResponseService "1" o-- "1" JsonParser
+
+PlagiarismCheckResult -- AiController
+PlagiarismCheckResult -- AiService
+PlagiarismCheckResult -- ResponseService
 @enduml

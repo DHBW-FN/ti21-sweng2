@@ -1,9 +1,7 @@
-@startuml Klassendiagramm
-interface Parser
+@startuml Beziehungsdiagramm
+class PdfParser
 
-class PdfParser implements Parser
-
-class JsonParser implements Parser
+class JsonParser
 
 class Controller
 
