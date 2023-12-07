@@ -1,0 +1,25 @@
+@startuml Klassendiagramm
+interface Parser
+
+class PdfParser implements Parser
+
+class JsonParser implements Parser
+
+class Controller
+
+class AiController
+
+class AiService
+
+class AiAdapter
+
+class ResponseService
+
+Controller -- PdfParser
+Controller -- JsonParser
+Controller -- AiController
+AiController -- AiService
+AiService -- AiAdapter
+Controller -- ResponseService
+ResponseService -- JsonParser
+@enduml

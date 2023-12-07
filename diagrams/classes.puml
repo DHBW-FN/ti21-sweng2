@@ -1,29 +1,54 @@
 @startuml Klassendiagramm
-interface Parser {
-    +validate(Thesis)
-    +parse(Thesis)
+class PlagiarismCheckResult {
+    +toJson(jsonResponseSchema):
 }
 
-class PdfParser implements Parser
+interface Parser {
+    +validate(File)
+    +parse(File)
+}
+
+class PdfParser implements Parser {
+    +validate(File)
+    +parse(File)
+}
 
 class JsonParser implements Parser {
-    +validateSchema()
+    +validate(File)
+    +parse(File)
+    +validateSchema(Schema)
 }
 
-class Controller
+class Controller {
+    Parser pdfParser
+    Parser jsonParser
+    +checkPlagiarism(Thesis, AdditionalData): Json
+}
 
-class AiController
+class AiController {
+    +checkPlagiarism(Thesis, AdditionalData): PlagiarismCheckResult
+}
 
-class AiService
+class AiService {
+    +checkPlagiarism(Thesis, AdditionalData): PlagiarismCheckResult
+    -generatePrompt(Thesis, AdditionalData): String
+    -getPlagiarismCheckResultFromString(String): PlagiarismCheckResult
+}
 
-class AiAdapter
+class AiAdapter {
+    +chat(String): String
+}
 
-class ResponseService
+class ResponseService {
+    Schema jsonResponseSchema
+    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): Json
+}
 
 Controller "1" -- "1" PdfParser
-Controller "1" -- "0 .. 1" JsonParser
+Controller "1" -- "1" JsonParser
 Controller "1" -- "1" AiController
 AiController "1" -- "1" AiService
-AiController "1" -- "1" AiAdapter
+AiService "1" -- "1" AiAdapter
 Controller "1" -- "1" ResponseService
+ResponseService "1" -- "1" JsonParser
 @enduml
