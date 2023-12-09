@@ -1,14 +1,34 @@
 @startuml Klassendiagramm
 class PlagiarismCheckResult {
+    Author author
+    String thesisText
     List<PlagiarismSource> sources
-    -getPlagiarismCoverage(): int
-    +toJson(jsonResponseSchema):
+    +addSource(PlagiarismSource)
+    +getCoverage(): float
+    +getPlagiarismLength(): int
 }
 
-class PlagiarismSource {
+class PlagiarismSource extends Source {
+    List<PlagiarismOccurrence> occurrences
+    +addOccurrence(PlagiarismOccurrence)
+    +getPlagiarismLength(): int
+}
+
+class PlagiarismOccurrence {
+    int start
+    int end
+    float certainty
+    +getPlagiarismLength(): int
+}
+
+class Author {
+    String name
+}
+
+class Source {
     String isbn
-    List<(int, int)> occurrences
-    int coverage
+    String title
+    Author author
 }
 
 interface Parser {
@@ -68,4 +88,7 @@ PlagiarismCheckResult -- AiService
 PlagiarismCheckResult -- ResponseService
 
 PlagiarismCheckResult "1" o-- "*" PlagiarismSource
+PlagiarismCheckResult "1" o-- "1" Author
+PlagiarismSource "1" o-- "1..*" PlagiarismOccurrence
+PlagiarismSource "1" o-- "1" Author
 @enduml
