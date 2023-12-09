@@ -2,6 +2,7 @@
 class PlagiarismCheckResult {
     Author author
     String thesisText
+    String summary
     List<PlagiarismSource> sources
     +addSource(PlagiarismSource)
     +getCoverage(): float
