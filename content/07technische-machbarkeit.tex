@@ -1,8 +1,90 @@
 \chapter{Technische Machbarkeit}\label{ch:technische-machbarkeit}
+Nachfolgend sollen die technologischen Entscheidungen für unser System erfolgen
+und die technische Machbarkeit dieser Objektorientierten Analyse nachgewiesen werden.
+Um die Technologien einschränken zu können, werden (Ausschluss-)Kriterien definiert,
+nach welchen die verschiedenen Technologien bewertet werden.
+Diese leiten sich maßgeblich aus verschiedenen Einflussfaktoren ab.
+Konkret sind dabei diese fünf Faktoren zu nennen:
 
+\begin{itemize}
+    \item Entwickler/Zulieferer
+    \item Unternehmen
+    \item Markt
+    \item Zeit
+    \item Gesetze
+\end{itemize}
+
+Bei der Auswahl der Technologien wird sich auf vier Schichten bezogen,
+welche den Stack für dieses System darstellen.
+Diese Schichten lauten:
+\begin{itemize}
+    \item Hardware
+    \item Betriebssystem
+    \item Programmiersprache
+    \item Bibliotheken
+\end{itemize}
+Dabei ist wichtig zu überprüfen, ob die ausgewählten Technologien
+aus den verschiedenen Schichten miteinander kompatibel sind.
+
+Sobald die Technologieentscheidungen getroffen wurden,
+wird die technische Machbarkeit des geplanten Systems bewiesen.
+Dazu wird ein Prototyp erstellt, welcher kritische Punkte des Systems abdeckt.
+Mit kritischen Punkte sind dabei solche Teile des Systems gemeint,
+ohne die das gesamte System nicht funktionieren würde.
+Konkret haben sich bei der Analyse drei Punkte herausgestellt,
+welche kritisch für das Gesamtsystem sind:
+\begin{itemize}
+    \item REST Schnittstelle
+    \item Auslesen der PDF
+    \item Schnittstelle zu chatbasierter KI zur Plagiatsprüfung
+\end{itemize}
 
 \section{Ausschlusskriterien}\label{sec:ausschlusskriterien}
 
+\paragraph{Freie Verwendung (Gesetze)}\label{par:freie-verwendung}
+Das erste Ausschlusskriterium ist die freie Verwendung der Technologien.
+Dabei ist wichtig zu betonen, dass durch Gesetze bzw.\ Lizenzen die
+Verwendung der Technologie nicht eingeschränkt werden soll.
+
+\paragraph{Weite Verbreitung (Entwickler, Unternehmen, Markt, Zeit)}\label{par:weite-verbreitung}
+Eine weite Verbreitung der verwendeten Technologien muss gegeben sein.
+Dies bedeutet, dass es marktüblich sein sollte, diese Technologie für den
+konkreten Anwendungsfall in unserem System zu verwenden.
+
+Ableiten lässt sich dieses Kriterium aus den Faktoren Entwickler, Unternehmen, Markt und Zeit.
+Die Entwickler können bei einer weit verbreiteten Technologie
+auf eine große Wissensbasis zu dieser Technologie zugreifen.
+Ebenso hat das autraggebende Unternehmen den Vorteil, dass die Entwicklungskosten geringer sind,
+wenn bereits bewährte Technologien benutzt werden, und nicht von neu auf etwas entwickelt werden muss.
+
+In diesem Zusammenhang ist auch die Entwicklung der Technologie auf dem
+Markt in den letzten Jahre zu beachten.
+So ist es ebenfalls entscheidend, ob eine Technologie gerade im Aufschwung
+ist oder das Ende des Lebenszyklus erreicht hat.
+Dadurch kann eine Langlebigkeit des Systems gewährleistet werden.
+
+\paragraph{Performance (Unternehmen, Markt)}\label{par:performance}
+Die Performance des Systems ist ein wichtiger Aspekt der Technologieentscheidung.
+Umso schneller unser System ein Ergebnis an den BachelorChecker weitergeben kann,
+desto besser ist auch die Erfahrung des Benutzers mit der Applikation.
+
+Auch in Bezug auf die Langlebigkeit des Systems ist die Performance ein wichtiger Faktor.
+Durch eine hohe Performance kann die Lebensdauer des Systems verlängert werden,
+da die Hardware nicht so schnell ausgetauscht werden muss.
+
+\paragraph{Skalierbarkeit (Unternehmen)}\label{par:skalierbarkeit}
+Auch die Skalierbarkeit der Technologien ist entscheidend.
+Dabei muss beachtet werden, dass das auftraggebende
+Unternehmen in den nächsten wachsen will.
+Dementsprechend muss auch dieses System den
+Herausforderungen einer gestiegenen Nachfrage gewachsen sein.
+
+\paragraph{Sicherheit (Gesetz, Unternehme)}\label{par:sicherheit}
+Die Sicherheit der Nutzerdaten darf durch die verwendeten Technologien nicht gefährdet werden.
+Je nach Art der Bachelorarbeit kann es vorkommen, dass diese vertrauliche Informationen enthält,
+die nicht an die Öffentlichkeit gelangen dürfen.
+Dies ist zum einen rechtlich nicht erlaubt, zum anderen würde das auftraggebende Unternehmen
+dadurch einen erheblichen Schaden, sowohl durch mögliche Klagen als auch auf das Image bezogen, erleiden.
 
 \section{Technologieentscheidungen}\label{sec:technologieentscheidungen}
 
@@ -11,8 +93,84 @@
 \subsection{Betriebssystem}\label{subsec:betriebssystem}
 
 \subsection{Programmiersprache}\label{subsec:programmiersprache}
+Ein weiterer wichtiger Aspekt bei der Umsetzung des Systems ist die Programmiersprache.
+Zusätzlich zu den bereits genannten Ausschlusskriterien kommen hierbei noch weitere Kriterien hinzu,
+die sicherstellen sollen, dass die Sprache optimal für den konkreten Anwendungsfall verwendet werden kann.
+Diese Kriterien sind eingeteilt in “Muss”- und “Kann”-Kriterien.
+Folgende Kriterien müssen erfüllt werden:
+\begin{itemize}
+    \item \textbf{Objektorientierung} Die Sprache muss es ermöglichen, objektorientiert zu programmieren
+    \item \textbf{REST-fähig} Die Sprache muss es ermöglichen, eine REST-Schnittstelle dem Kundensystem BachelorChecker bereitzustellen
+    \item \textbf{Testfähigkeit} Die Sprache muss es ermöglichen, das System systematisch ohne großen Mehraufwand zu testen
+\end{itemize}
+
+Nachfolgende Kriterien hingegen sind optional, fließen aber
+positiv in den Entscheidungsprozess ein, falls diese erfüllt werden:
+\begin{itemize}
+    \item \textbf{Entwicklungsfähigkeit im Bereich KI} Die Sprache sollte es ermöglichen, eine KI zu entwickeln.
+            Dies ist insbesondere für mögliche Weiterentwicklungen des Systems hilfreich,
+            bei denen beispielsweise die KI zur Plagiatsprüfung selbst entwickelt werden soll.
+    \item \textbf{Generierung von Dokumentation} Die Sprache sollte es ermöglichen, Dokumentation für den Code
+            automatisch generieren zu lassen und den manuellen Dokumentationsaufwand gering halten.
+\end{itemize}
+Unter dem Aspekt der weiten Verbreitung der Programmiersprachen
+stechen insbesondere die Sprachen Java,Python und JavaScript hervor.
+Laut einer Statistik von Statista sind dies weltweit die drei beliebtesten Programmiersprachen\autocite{programmiersprachen}.
+Somit ist der Aspekt der weiten Verbreitung bei allen gegeben.
+Auch der Aspekt der Kompatibilität mit den darunterliegenden Systemschichten ist gegeben.
+Die weiteren Kriterien zur Technologieentscheidung werden nachfolgend überprüft.
+
+\begin{tabularx}{\textwidth}{l|X|X|X}
+    & \textbf{Java} & \textbf{Python} & \textbf{JavaScript} \\ \hline
+    \textbf{Freie Verwendung} & \cellcolor{red!30} Proprietär & \cellcolor{green!30}Ja & \cellcolor{green!30}Ja \\ \hline
+    \textbf{Skalierbarkeit} & \cellcolor{green!30}Hoch & \cellcolor{orange!30}Mittel & \cellcolor{green!30}Am Höchsten \\ \hline
+    \textbf{Performance} & \cellcolor{green!30}Hoch & \cellcolor{green!30}Hoch & \cellcolor{red!30}Niedrig \\ \hline
+    \textbf{Objektorientierung} & \cellcolor{green!30}Ja & \cellcolor{green!30}Ja & \cellcolor{green!30}Ja \\ \hline
+    \textbf{REST-fähig} & \cellcolor{green!30}Ja, z.B.\ mit Spring & \cellcolor{green!30}Ja, z.B.\ mit Flask & \cellcolor{green!30}Ja, z.B.\ mit node.js \\ \hline
+    \textbf{Testfähig} & \cellcolor{green!30}Ja & \cellcolor{green!30}Ja & \cellcolor{green!30}Ja \\ \hline
+    \textbf{Entwicklung einer KI} & \cellcolor{orange!30}Ungewöhnlich, aber möglich mit z.B.\ Deeplearning4j & \cellcolor{green!30}Beliebteste Programmiersprache im Kontext von KI-Entwicklung & \cellcolor{orange!30}Ungewöhnlich, aber möglich mit z.B.\ TensorFlow.js \\ \hline
+    \textbf{Generierung der Dokumentation} & \cellcolor{green!30}Möglich mit z.B.\ JavaDoc & \cellcolor{green!30}Möglich mit z.B.\ Doxygen & \cellcolor{green!30}Möglich mit z.B.\ JSDoc \\
+\end{tabularx}
+Die Punkte Freie Verwendung, Skalierbarkeit und Performance beziehen sich auf nachfolgende Quelle\autocite{nodejavapython}.
+
+Aus der abgebildeten Tabelle geht hervor, dass es sich bei Java um eine proprietäre Programmiersprache handelt.
+Somit ist der Aspekt der freien Verwendung nicht gegeben und Java scheidet für die Verwendung dieses Systems aus.
+
+Die Programmiersprachen Python und JavaScript erfüllen beide grundsätzlich die genannten Kriterien.
+Auch der Punkt Performance ist bei beiden Sprachen gegeben, da bei diesem System
+vor allem die chatbasierte KI die Performance des gesamten Systems beeinflusst.
+Aus langjähriger Erfahrung der Entwickler ist bekannt, dass die
+Performance von Python und JavaScript für die Entwicklung des Systems ausreichend ist,
+auch wenn Python in der Regel als etwas performanter gilt.
+Somit sind beide Sprachen grundsätzlich für die Entwicklung des Systems geeignet.
+Ausschlaggebend für die Entscheidung ist der Punkt der Entwicklungsfähigkeit einer KI.
+Da in zukünftigen Weiterentwicklungen des Systems auch die Option bestehen soll, eine KI zur Plagiatsprüfung selbst zu entwickeln,
+ist es wichtig, dass die Programmiersprache dies auch ermöglicht.
+Dementsprechend ist Python in diesem Anwendungsfall die bessere Wahl, da diese Programmiersprache
+die meistverwendete Programmiersprache für die Entwicklung von Künstlicher Intelligenz ist.
 
 \subsection{Bibliotheken}\label{subsec:bibliotheken}
+Der letzte Schritt bei der Auswahl der Technologien ist die Auswahl der Bibliotheken.
+Dabei ist es wichtig nur Bibliotheken zu verwenden, welche auch mit der zuvor ausgewählten Programmiersprache kompatibel sind.
+
+Weitergehend liegt bei der Auswahl der Bibliotheken der Fokus auf den kritischen
+Punkten des Systems, welche bereits am Anfang des Kapitels genannt wurden.
+
+\subsubsection{REST}\label{subsubsec:rest}
+Der erste kritische Punkt des Systems ist die REST-Schnittstelle zum Kundensystem.
+Laut einer Umfrage von Stack Overflow sind Django und Flask in diesem Kontext die beliebtesten
+Bibliotheken, um in Python Web Anwendungen umzusetzen\autocite{webframeworks}.
+Somit ist der Punkt der weiten Verbreitung bereits gegeben.
+
+In einer gegenüberstellung der beiden Framworks ergibt sich, dass Flask eine einfachere
+Benutzung und mehr Flxibität auszeichnet\autocite{flaskdjango}.
+Da Flexibilität und Skalierbarkeit wichtige Punkte in der Umsetzung des Systems darstellen,
+wurde sich letztendlich für Flask entschieden.
+Auch die schnelle Lernkurve hat dabei eine Rolle gespielt.
+So kann einfacher die Machbarkeit anhand eines Prototypen bewiesen werden.
+
+\subsubsection{Auslesen der PDF}\label{subsubsec:pdf}
+\subsubsection{Schnittstelle zu chatbasierter KI}\label{subsubsec:ki}
 
 
 \section{Machbarkeitsbeweis}\label{sec:machbarkeitsbeweis}
