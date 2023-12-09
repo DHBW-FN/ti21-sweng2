@@ -42,23 +42,29 @@ class PdfParser implements Parser {
 }
 
 class JsonParser implements Parser {
+    Schema schema
     +validate(File)
     +parse(File)
     +validateSchema(Schema)
 }
 
 class Controller {
-    +checkPlagiarism(Thesis, AdditionalData): Json
+    PdfParser pdfParser
+    JsonParser jsonParser
+    AiController aiController
+    ResponseController responseController
+    +check(String, String): String
 }
 
 class AiController {
-    +checkPlagiarism(Thesis, AdditionalData): PlagiarismCheckResult
+    AiService aiService
+    +check(String, String): PlagiarismCheckResult
 }
 
 class AiService {
-    +checkPlagiarism(Thesis, AdditionalData): PlagiarismCheckResult
-    -generatePrompt(Thesis, AdditionalData): String
-    -getPlagiarismCheckResultFromString(String): PlagiarismCheckResult
+    AiAdapter aiAdapter
+    +check(String, String): PlagiarismCheckResult
+    -generate_setup_prompt(String): String
 }
 
 class AiAdapter {
@@ -66,12 +72,14 @@ class AiAdapter {
 }
 
 class ResponseController {
-    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): Json
+    Schema schema
+    ResponseService responseService
+    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): String
 }
 
 class ResponseService {
-    Schema jsonResponseSchema
-    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): Json
+    Schema schema
+    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): String
 }
 
 Controller "1" o-- "1" PdfParser
