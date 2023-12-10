@@ -26,6 +26,9 @@ Diese Schichten lauten:
 Dabei ist wichtig zu überprüfen, ob die ausgewählten Technologien
 aus den verschiedenen Schichten miteinander kompatibel sind.
 
+Auch eine Alternative zur Übergabe des Ergebnisses der Plagiatsprüfung,
+falls das HTTP-Timeout ausläuft, wird dabei definiert.
+
 Sobald die Technologieentscheidungen getroffen wurden,
 wird die technische Machbarkeit des geplanten Systems bewiesen.
 Dazu wird ein Prototyp erstellt, welcher kritische Punkte des Systems abdeckt.
@@ -89,8 +92,26 @@ dadurch einen erheblichen Schaden, sowohl durch mögliche Klagen als auch auf da
 \section{Technologieentscheidungen}\label{sec:technologieentscheidungen}
 
 \subsection{Hardware}\label{subsec:hardware}
+% TODO: Hardware
+% Wie sollen die Komponenten spezfiziert sein? Wir wissen ja nicht, wie viele Anfragen kommen werden.
 
 \subsection{Betriebssystem}\label{subsec:betriebssystem}
+Bei der Wahl des Betriebssysems stehen gibt es grundsätzlich drei Möglichkeiten,
+welche aufgrund der Marktsituation in Betracht gezogen werden können.
+So sind Windows, MacOS und Linux die drei meistverbreiteten Betriebssysteme für die Entwicklung von Software\autocite{JetBrains-2023}.
+
+Da es bei Linux als einzige der drei Optionen um ein Open-Source Betriebssystem handelt,
+ist dieses für die Verwendung in diesem System am besten geeignet.
+So profitiert Linux von der großen Entwicklergemeinde, welche das Betriebssystem stetig weiterentwickelt.
+Auch die Sicherheit ist bei Linux im Vergleich zu den anderen beiden Betriebssystemen am höchsten,
+da es sich um ein Open-Source Betriebssystem handelt und somit jeder die Möglichkeit hat,
+den Quellcode einzusehen und mögliche Sicherheitslücken zu finden und zu beheben.
+
+Unter den verschiedenen Linux Distributionen bietet sich Ubuntu als die beste Option an.
+Ubuntu ist die meistverbreitete Linux Distribution und wird von Canonical entwickelt.
+Mit einem garantierten Support bis 2032 ist Ubuntu auch für die Langlebigkeit des Systems geeignet\autocite{ubuntu}.
+Auch die Kompatibilität mit allen gängigen Hardwarearchitekturen ist gegeben.
+
 
 \subsection{Programmiersprache}\label{subsec:programmiersprache}
 Ein weiterer wichtiger Aspekt bei der Umsetzung des Systems ist die Programmiersprache.
@@ -170,7 +191,28 @@ Auch die schnelle Lernkurve hat dabei eine Rolle gespielt.
 So kann einfacher die Machbarkeit anhand eines Prototypen bewiesen werden.
 
 \subsubsection{Auslesen der PDF}\label{subsubsec:pdf}
+Der nächste kritische Punkt des Systemablauf ist das Auslesen der PDF-Dateien.
+Hierzu soll eine Bibliothek verwendet werden, welche diese Funktionalitäten bereitstellen kann.
+Dabei wird die Annahme gemacht, dass die PDF-Dateien in einem maschinenlesbaren Format von BachelorChecker bereitgestellt werden.
+
+Die Auswahl an Bibliotheken ist hierbei sehr umfassend.
+Die Wahl fiel letztendlich auf die Bibliothek pypdf.
+Diese Bibliothek ist einfach zu verstehen und erhält regelmäßig Updates.
+Somit ist auch hier die Langlebigkeit des Systems gewährleistet.
+
 \subsubsection{Schnittstelle zu chatbasierter KI}\label{subsubsec:ki}
+
+\subsection{Alternative zur Übergabe der Antwort}\label{subsec:alternative-zur-uebergabe-der-antwort}
+Eine weitere wichtige Entscheidung ist die Art und Weise, wie die Antwort an den BachelorChecker übergeben wird,
+falls das Timeout überschritten wurde.
+Hierbei ist es üblich, nach dem Timeout den Statuscode 202 zurückzugeben.
+Dieser bedeutet, dass die Anfrage akzeptiert wurde, aber noch nicht bearbeitet wurde\autocite{mozilla}.
+Bei dieser Antwort wird dem BachelorChecker die ID inklusive der Webadresse des Auftrags mitgegeben,
+welche dieser dann in regelmäßigen Abständen abfragen kann, um den aktuellen Status des Auftrags zu erhalten.
+
+Sollte der Auftrag in der Zwischenzeit fertig werden, dann wird auf diese regelmäßigen Abfragen das Ergebnis
+der Plagiatsprüfung weitergegeben.
+
 
 
 \section{Machbarkeitsbeweis}\label{sec:machbarkeitsbeweis}
