@@ -90,10 +90,11 @@ Dies ist zum einen rechtlich nicht erlaubt, zum anderen würde das auftraggebend
 dadurch einen erheblichen Schaden, sowohl durch mögliche Klagen als auch auf das Image bezogen, erleiden.
 
 \section{Technologieentscheidungen}\label{sec:technologieentscheidungen}
+Nachfolgend werden die Technologieentscheidungen für die verschiedenen Schichten des Systems getroffen.
+Dabei wird zuerst die Entscheidung für das Betriebssystem getroffen,
+da dieses die Grundlage für die weiteren Entscheidungen bildet.
 
-\subsection{Hardware}\label{subsec:hardware}
-% TODO: Hardware
-% Wie sollen die Komponenten spezfiziert sein? Wir wissen ja nicht, wie viele Anfragen kommen werden.
+Die restlichen Schichten müssen dementsprechend mit dem Betriebssystem kompatibel sein.
 
 \subsection{Betriebssystem}\label{subsec:betriebssystem}
 Bei der Wahl des Betriebssysems stehen gibt es grundsätzlich drei Möglichkeiten,
@@ -109,9 +110,18 @@ den Quellcode einzusehen und mögliche Sicherheitslücken zu finden und zu beheb
 
 Unter den verschiedenen Linux Distributionen bietet sich Ubuntu als die beste Option an.
 Ubuntu ist die meistverbreitete Linux Distribution und wird von Canonical entwickelt.
-Mit einem garantierten Support bis 2032 ist Ubuntu auch für die Langlebigkeit des Systems geeignet\autocite{ubuntu}.
-Auch die Kompatibilität mit allen gängigen Hardwarearchitekturen ist gegeben.
+Mit einem garantierten Support bis 2032 ist Ubuntu Server auch für die Langlebigkeit des Systems geeignet\autocite{ubuntu}.
 
+\subsection{Hardware}\label{subsec:hardware}
+Bei der Auswahl der Hardware ist es wichtig, dass diese mit dem ausgewählten Betriebssystem kompatibel ist.
+Laut eigener Aussage ist Ubuntu Server mit allen gängigen Prozessorarchitekturen kompatibel\autocite{ubuntu}.
+
+Dazu gehören unter anderem x86-64, ARM v7 und ARM64, welche zu den meistverbreiteten Prozessorarchitekturen gehören.
+Die letztendliche Auswahl der Hardware kann an diesem Punkt allerdings noch nicht getroffen werden,
+da die Hardwareanforderungen des Systems noch nicht bekannt sind.
+Auch die bereits vorhandene Hardware des auftraggebenden Unternehmens spielt hierbei eine Rolle.
+
+Sobald die Hardwareanforderungen des Systems bekannt sind, kann die Auswahl der Hardware getroffen werden.
 
 \subsection{Programmiersprache}\label{subsec:programmiersprache}
 Ein weiterer wichtiger Aspekt bei der Umsetzung des Systems ist die Programmiersprache.
