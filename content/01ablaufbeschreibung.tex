@@ -1,1 +1,20 @@
 \chapter{Ablaufbeschreibung der Systemidee}\label{ch:ablaufbeschreibung}
+
+Es wird vorausgesetzt, dass die Daten vom BachelorChecker an die \ac{REST}-Schnittstelle des \ac{AiPC} übergeben werden.
+Die Daten bestehen hierbei einerseits aus der Bachelorabeit in Form einer nicht gesperrten \ac{PDF}-Datei und den zusätzlichen Informationen in Form einer \ac{JSON}-Datei.
+
+Ausgehend vom \ac{API} des \ac{AiPC} werden die Daten an die verarbeitende Komponente weitergeleitet.
+Dort werden die Daten validiert, das heißt, es wird überprüft, ob es sich tatsächlich um ein \ac{PDF}-Dokument handelt und ob die \ac{JSON}-Datei valide ist.
+Sind die Daten valide, werden diese ausgelesen und die daraus extrahierten Daten in ein Prompt überführt.
+Zusätzlich wird in dem Prompt spezifiziert, dass die Ausgabe des Ergebnisses im \ac{JSON}-Format erfolgen soll.
+Das Prompt wird anschließend verwendet, um eine Anfrage an die chatbasierte \ac{KI} zu stellen.
+
+Die \ac{KI} verarbeitet die Anfrage, führt die Plagiatsprüfung anhand der übergebenen Daten und der Literaturdatenbanken durch und gibt das Ergebnis an \ac{AiPC} zurück.
+
+\ac{AiPC} überführt  das Ergebnis in ein \ac{JSON}-Objekt mit dem richtigen Output-Schema für die Antwort an den BachelorChecker.
+Die Antwort mit dem aufbereitetem Ergebnis wird an den BachelorChecker zurückgegeben und dort verarbeitet.
+
+Sollte die Plagiatsprüfung nicht schnell genug durchgeführt werden und damit die Antwortzeit einer \ac{HTTP}-Anfrage (Timeout) überschreiten,
+so wird dem Auftraggeber eine alternative Antwort zurückgegeben, die darauf hinweist, dass die Plagiatsprüfung noch nicht abgeschlossen ist.
+Der Auftraggeber erhält dabei außerdem eine Möglichkeit, den Status der Verarbeitung periodisch abzurufen.
+Ist die Plagiatsprüfung beendet, so steht das Ergebnis zur Verfügung und kann abgerufen werden.
