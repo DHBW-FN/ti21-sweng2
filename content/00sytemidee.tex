@@ -1,1 +1,86 @@
 \chapter{Systemidee}\label{ch:systemidee}
+
+Im Rahmen der Erweiterung der existierenden Anwendung “BachelorChecker” soll anhand dieser \ac{OOA} das in Auftrag gegebene System \ac{AiPC} konzipiert werden.
+
+\section{Zielbestimmung}\label{sec:zielbestimmung}
+
+Die Integration dieser Erweiterung in die existierende Anwendung wird die Genauigkeit der Ergebnisse und damit die Trefferquote bei der Identifizierung von Plagiaten in Bachelorarbeiten durch künstliche Intelligenz erhöhen.
+Dabei soll es nicht nur möglich sein, exakt übereinstimmende Textpassagen zu identifizieren, sondern auch solche, die paraphrasiert wurden.
+Zudem kann durch die Erweiterung ein Wert, der den prozentualen Anteil der Übereinstimmung zwischen dem Text der Bachelorarbeit und dem der Quelle angibt, berechnet werden.
+
+\section{Konzept}\label{sec:konzept}
+
+Entsprechend dieser Anforderung schlägt der Auftragnehmer die im Folgenden beschriebene Softwarelösung vor, welche die Plagiatsprüfung über eine chatbasierte KI realisiert.
+
+Die konzipierte Lösung stellt dem BachelorChecker eine Schnittstelle bereit, über die dieser nicht gesperrte \ac{PDF}-Dateien sowie zusätzliche Informationen als \ac{JSON}-Datei senden kann.
+Die empfangenen Daten werden vom \ac{AiPC}-System aufbereitet und in ein geeignetes Prompt für die Verarbeitung durch die chatbasierte \ac{KI} umgewandelt.
+Diese führt die Plagiatsprüfung auf Basis der im Prompt bereitgestellten Daten anhand verschiedener Literaturdatenbanken durch.
+Das Ergebnis dieser Überprüfung wird von der \ac{KI} in einem JSON-Format mit einer Liste der übereinstimmenden Literaturen und dem prozentualen Übereinstimmungsgrad je Literatur an den AiPlagiarismChecker zurückgegeben.
+Dort wird das resultierende \ac{JSON}-Objekt validiert und weiter aufbereitet, um dann dem BachelorChecker bereitgestellt zu werden.
+Falls die Plagiatsprüfung nicht innerhalb eines festgelegten Zeitraums abgeschlossen werden kann, wird dem Auftraggeber die Möglichkeit gegeben, die Informationen, sobald sie verfügbar sind, abzurufen.
+
+\section{Voraussetzungen an den BachelorChecker}\label{sec:voraussetzungen-an-den-bachelorchecker}
+
+Es wird erwartet, dass der BachelorChecker in der Lage ist, \ac{HTTP}-Anfragen an die Schnittstelle des \ac{AiPC} zu senden.
+Dabei übermittelt er eine nicht gesperrte \ac{PDF}-Datei sowie zusätzliche Informationen in Form einer \ac{JSON}-Datei.
+Des Weiteren soll der BachelorChecker in der Lage sein, die resultierenden \ac{HTTP}-Antworten zu verarbeiten, die die Ergebnisse der Plagiatsprüfung enthalten.
+Die regelmäßige Abfrage des Status der Plagiatsprüfung wird ebenfalls als Voraussetzung für den BachelorChecker betrachtet.
+
+Zusätzlich wird erwartet, dass der Auftraggeber eine angemessene Infrastruktur bereitstellt, auf der die Softwarelösung \ac{AiPC} betrieben werden kann.
+Es ist ebenfalls erforderlich sicherzustellen, dass diese Infrastruktur in der Lage ist, effektiv mit der chatbasierten \ac{KI} zu kommunizieren.
+
+\section{Entwicklungsstufen}\label{sec:entwicklungsstufen}
+
+\subsection{Erste Entwicklungsstufe: MVP}
+
+Die erste Version des \ac{AiPC} soll ein \ac{MVP} darstellen.
+Dafür soll der Empfang und die Validierung der Daten, die Generierung eines Prompts sowie die Aufbereitung und anschließende Bereitstellung der Ergebnisse wie oben beschrieben umgesetzt werden.
+Diese erste Entwicklungsstufe wird nochmals unterteilt in einzelne Meilensteine, die jeweils eine Teilfunktionalität des Systems implementieren.
+
+\subsubsection{Meilenstein 1: Schnittstellenimplementierung}
+In diesem ersten Meilenstein soll die Schnittstelle des \ac{AiPC} implementiert werden.
+Diese soll in der Lage sein, die von dem BachelorChecker gesendeten Daten zu empfangen und an die weiterverarbeitenden Komponenten weiterzuleiten.
+Hier wird bereits berücksichtigt, dass die \ac{KI} möglicherweise nicht in der Lage ist, die Plagiatsprüfung innerhalb eines festgelegten Zeitraums abzuschließen.
+
+\subsubsection{Meilenstein 2: Generierung eines Prompts}
+In diesem Meilenstein soll die Generierung eines Prompts implementiert werden.
+Zuvor werden die von der Schnittstelle erhaltenen Daten validiert und aufbereitet.
+Das Prompt wird anschließend an die chatbasierte \ac{KI} weitergeleitet.
+
+\subsubsection{Meilenstein 3: Aufbereitung und Bereitstellung der Ergebnisse}
+In diesem Meilenstein soll die Aufbereitung und Bereitstellung der Ergebnisse implementiert werden.
+Dazu werden die von der \ac{KI} erhaltenen Ergebnisse validiert und aufbereitet.
+Anschließend werden die Ergebnisse an den BachelorChecker zurückgegeben.
+
+\subsection{Zweite Entwicklungsstufe: Erweiterung der Funktionalität}
+In einer zweiten Entwicklungsstufe kann eine Möglichkeit zur Stapelverarbeitung mehrerer Dateien gleichzeitig ergänzt werden. 
+Außerdem kann Die \ac{JSON}-Ausgabedatei mit weiteren Informationen angereichert werden, um detailliertere Ergebnisse über die Übereinstimmungen zu erhalten.
+
+\subsection{Dritte Entwicklungsstufe: Erweiterung der KI}
+In der dritten Entwicklungsstufe kann eine fortschrittlichere \ac{KI} und Mechanismen zur kontinuierlichen Aktualisierung der \ac{KI}-Modelle für genauere Plagiatsprüfungen integriert werden.
+Die verbesserte \ac{KI} soll außerdem in der Lage sein, \ac{KI} generierte Texte zu erkennen und zu kennzeichnen.
+Im Zuge dieser Erweiterung können auch weitere Sprachen für die Plagiatsprüfung unterstützt werden.
+
+\section{Kosten}\label{sec:kosten}
+
+Die Kosten für ein \ac{MVP} errechnen sich aus den Kosten für die Entwicklung der Softwarelösung \ac{AiPC} und den Kosten für die benötigten Token für die chatbasierte \ac{KI}.
+
+\subsection{Kosten für die Entwicklung des AiPC}\label{subsec:kosten-für-die-entwicklung-des-aipc}
+
+Für die Entwicklung wird ein Stundensatz von 180€ berechnet. % Quelle: https://www.digital-experts.com/blog/softwareentwicklung-kosten-was-kostet-eine-individualsoftware
+Dabei sind sowohl der Gewinn als auch die anfallenden Steuern enthalten.
+Der Arbeitsaufwand wird auf etwa 240 Personentage (aufgeteilt auf vier Personen) geschätzt.
+Somit belaufen sich die Kosten für die Entwicklung von \ac{AiPC} auf 43.200€.
+
+\subsection{Kosten für die chatbasierte KI}\label{subsec:kosten-für-die-chatbasierte-ki}
+
+\begin{table}[H]
+    \begin{tabular}{lll}
+    Model              & Input                & Output               \\
+    gpt-3.5-turbo-1106 & \$0.0010 / 1K tokens & \$0.0020 / 1K tokens
+    \end{tabular}
+\end{table}
+
+
+
+
