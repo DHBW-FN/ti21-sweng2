@@ -9,6 +9,7 @@
     \label{fig:beziehungsdiagramm}
 \end{figure}
 
+
 \section{Fachklassendiagramm}\label{sec:fachklassendiagramm}
 \begin{figure}[H]
     \centering
@@ -23,45 +24,70 @@
 \subsection{Controller}\label{subsec:controller}
 Dies ist die Hauptsteuerungsklasse,
 sie ist verantwortlich für die Abwicklung der Anfragen und Antworten in der Anwendung.
+Der Controller enthält außerdem die an die Schnittstelle gesendeten Anfragen und koordiniert die Kommunikation zwischen den einzelnen Diensten.
 
 \subsection{Author}\label{subsec:author}
-Das Author Modell stellt einen Autor dar und enthält recht einfach den Namen des Autors als Feld.
+Die Author-Klasse stellt einen Autor dar und enthält den Namen des Autors.
 
 \subsection{Source}\label{subsec:source}
+Die Source-Klasse stellt eine Quelle dar.
+Sie entspricht einem Buch, einer Webseite oder einem anderen Dokument aus der realen Welt.
+Sie enthält Informationen über den Autor, den Titel und die ISBN der Quelle.
 
 \subsection{PlagiarismCheck}\label{subsec:plagiarism_check}
 
-\subsection{PlagiarismCheckResult}\label{subsec:plagiarism_check_result}
+\subsubsection{PlagiarismCheckResult}\label{subsubsec:plagiarism_check_result}
+Diese Klasse wird verwendet, um das von der KI gesendete Ergebnis der Überprüfung in einem einheitlichen Format zu halten.
 
-\subsection{PlagiarismSource}\label{subsec:plagiarism_source}
-
-\subsection{PlagiarismOccurrence}\label{subsec:plagiarism_occurrence}
+\subsubsection{PlagiarismOccurrence}\label{subsubsec:plagiarism_occurrence}
 Dieses Modell repräsentiert eine einzelne Quelle eines möglichen Plagiats.
 Es enthält Informationen über die ISBN, den Titel,
 den Autor der Quelle, und die Stellen, an denen das Plagiat aufgetreten ist.
 
+\subsubsection{PlagiarismSource}\label{subsubsec:plagiarism_source}
+Diese Klasse erweitert die Source-Klasse um die Informationen, die für die Plagiatsprüfung benötigt werden.
+Eine solche Information ist beispielsweise eine Liste mit Stellen im Text, die der Quelle zugeordnet werden können.
+Auch zusätzliche Funktionalität wie die Anzahl der Zeichen die für diese Quelle als Plagiat im Text markiert wurden,
+wird in dieser Klasse implementiert.
+
 \subsection{AI}\label{subsec:ai}
 
 \subsubsection{AiController}\label{subsubsec:ai_controller}
+Der AiController verwaltet den AiService und dient der Koordination aller Abläufe,
+welche mit der Anfrage an das verwendete KI-System zusammenhängen.
 
 \subsubsection{AiService}\label{subsubsec:ai_service}
-Die AiService Klasse stellt einen Dienst zur Überprüfung von potenziellen Plagiaten in einem Text unter Verwendung eines KI-Adapters bereit.
+Der AiService wandelt die ausgelesene Bachelorarbeit und die Zusatzinformationen in einen Prompt um,
+welcher von dem verwendeten KI-System interpretiert werden kann.
+Nach Erhalt einer Antwort durch das KI-System wandelt er diese in ein internes Objekt zur Datenhaltung um.
 
 \subsubsection{AiAdapter}\label{subsubsec:ai_adapter}
 Die AiAdapter-Klasse ist für die Kommunikation mit der AI-Engine verantwortlich, die die Plagiatsprüfung durchführt.
 Die Klasse nimmt Texteingaben von Benutzern entgegen und sendet sie an die AI-Engine zur Analyse.
-Diese sendet dann eine Antwort zurück, die von der AiAdapter -Klasse weiterverarbeitet wird.
+Diese sendet dann eine Antwort zurück, die von der AiAdapter-Klasse weiterverarbeitet wird.
 
 \subsection{Response}\label{subsec:response}
 
 \subsubsection{ResponseController}\label{subsubsec:response_controller}
+Der ResponseController verwaltet den ResponseService und koordiniert alle Abläufe,
+welche mit der Erstellung der Antwort an den Nutzer zu tun haben.
 
 \subsubsection{ResponseService}\label{subsubsec:response_service}
+Der ResponseService wird verwendet, um aus dem Objekt zur internen Datenhaltung ein vom Nutzer verständliches Objekt zu erstellen.
 
 \subsection{Utils}\label{subsec:utils}
 
 \subsubsection{Parser}\label{subsubsec:parser}
+Das Parser-Interface beschreibt die fü einen Parser benötigten Methoden.
+Durch die Implementierung dieses Interfaces wird sichergestellt,
+dass Parser die gleichen Methoden verwenden, egal welches Format sie verarbeiten.
 
 \subsubsection{PdfParser}\label{subsubsec:pdf_parser}
+Ein PdfParser ist ein Parser, der PDF-Dateien verarbeiten kann.
+Er wird vom Controller verwendet um zu überprüfen, ob die vom BachelorChecker übergebene PDF nicht gesperrt ist.
+Ist dies der Fall, kann er außerdem verwendet werden, um die PDFs auszulesen.
 
-\subsubsection{JsonParser}\label{subsubsec:json_parser}`
+\subsubsection{JsonParser}\label{subsubsec:json_parser}
+Ein JsonParser ist ein Parser, der JSON-Dateien verarbeiten kann.
+Er wird vom Controller verwendet, um die vom BachelorChecker übergebene JSON-Datei auszulesen.
+Dabei wird sowohl das Dateiformat sichergestellt, als auch der Inhalt der Datei mit einem Schema validiert.
