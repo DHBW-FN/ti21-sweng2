@@ -15,7 +15,7 @@ Entsprechend dieser Anforderung schlägt der Auftragnehmer die im Folgenden besc
 Die konzipierte Lösung stellt dem BachelorChecker eine Schnittstelle bereit, über die dieser nicht gesperrte \ac{PDF}-Dateien sowie zusätzliche Informationen als \ac{JSON}-Datei senden kann.
 Die empfangenen Daten werden vom \ac{AiPC}-System aufbereitet und in ein geeignetes Prompt für die Verarbeitung durch die chatbasierte \ac{KI} umgewandelt.
 Diese führt die Plagiatsprüfung auf Basis der im Prompt bereitgestellten Daten anhand verschiedener Literaturdatenbanken durch.
-Das Ergebnis dieser Überprüfung wird von der \ac{KI} in einem JSON-Format mit einer Liste der übereinstimmenden Literaturen und dem prozentualen Übereinstimmungsgrad je Literatur an den AiPlagiarismChecker zurückgegeben.
+Das Ergebnis dieser Überprüfung wird von der \ac{KI} in einem JSON-Format mit einer Liste der übereinstimmenden Literaturen und dem prozentualen Übereinstimmungsgrad je Literatur an den \ac{AiPC} zurückgegeben.
 Dort wird das resultierende \ac{JSON}-Objekt validiert und weiter aufbereitet, um dann dem BachelorChecker bereitgestellt zu werden.
 Falls die Plagiatsprüfung nicht innerhalb eines festgelegten Zeitraums abgeschlossen werden kann, wird dem Auftraggeber eine alternative Möglichkeit zur Übergabe gegeben.
 
