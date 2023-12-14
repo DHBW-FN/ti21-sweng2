@@ -2,6 +2,166 @@
 
 
 \section{Schnittstelle zu BachelorChecker}\label{sec:schnittstelle-bachelorchecker}
+\begin{tabularx}{\textwidth}{l|X}
+    \hline
+    \textbf{Art} & Datenschnittstelle von/zu externen System \\
+    \hline
+    \textbf{Beschreibung} & Die Schnittstelle zu BachelorChecker dient dem Kunden dazu, die Bachelorarbeit und JSON-Datei mit Zusatzinformationen an AiPlagiarismChecker zu übergeben.
+                            Auch dient die Schnittstelle der Übertragung einer JSON-Datei mit dem Ergebnis der Überprüfung zurück an BachelorChecker. \\
+    \hline
+    \textbf{Komplexität} & normal \\
+    \hline
+    \textbf{Hinweise zur Verwendung} & Es wird nur ein Endpunkt angeboten und es erfolgt durch den AiPlagiarismChecker keine Authentifizierung.
+                                        Die übertragene PDF muss nicht-gesperrt sein und die JSON-Datei muss ein noch zu bestätigendes Schema erfüllen.
+                                        \autoref{lst:json-zusatzinfo} zeigt das Schema wie es vom potentiellen Auftragnehmer vorgeschlagen wird.
+                                        Sollte nicht im zeitlichen Standardrahmen von HTTP geantwortet werden können wird eine alternative Angeboten.\\
+\end{tabularx}
 
+\subsection{Aufbau der JSON-Datei mit Zusatzinformationen}\label{subsec:json-zusatzinfo}
+\begin{lstlisting}[caption={JSON-Datei mit Zusatzinformationen},captionpos=b,label={lst:json-zusatzinfo}]
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "author": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "es",
+        "it",
+        "other"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9]{13}$"
+      }
+    }
+  },
+  "required": [
+    "author",
+    "language",
+    "title"
+  ]
+}
+\end{lstlisting}
+
+Erklärung der Attribute:
+\begin{itemize}
+    \item author: Name des Autors der Bachelorarbeit
+    \item language: Sprache der Bachelorarbeit
+    \item title: Titel des Dokuments
+    \item sources: Liste mit ISBN Nummern von Quellen die bei der Prüfung ignoriert werden sollen
+\end{itemize}
+
+\subsection{Aufbau der JSON-Datei mit einem Ergebnis}\label{subsec:json-ergebnis}
+\begin{lstlisting}[caption={JSON-Datei mit einem Ergebnis},captionpos=b,label={lst:json-ergebnis}]
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "author": {
+      "type": "string"
+    },
+    "resultSummary": {
+      "type": "string"
+    },
+    "totalPlagiarismCoverage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "plagiarismSources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "isbn": {
+            "type": "integer"
+          },
+          "plagiarismLength": {
+            "type": "integer"
+          },
+          "occurrences": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "startChar": {
+                  "type": "integer"
+                },
+                "endChar": {
+                  "type": "integer"
+                },
+                "certainty": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              },
+              "required": [
+                "startChar",
+                "endChar"
+              ]
+            }
+          }
+        },
+        "required": [
+          "isbn",
+          "coverage",
+          "occurrences"
+        ]
+      }
+    }
+  },
+  "required": [
+    "author",
+    "resultSummary",
+    "totalPlagiarismCoverage"
+  ]
+}
+\end{lstlisting}
+
+Erklärung der Attribute:
+\begin{itemize}
+    \item author: Name des Autors der Bachelorarbeit
+    \item resultSummary: Zusammenfassung des Ergebnisses
+    \item totalPlagiarismCoverage: Prozentualer Anteil aller Plagiate am gesamten Dokument
+    \item plagiarismSources: Liste mit Quellen die als Plagiat erkannt wurden
+    \begin{itemize}
+        \item isbn: ISBN Nummer der Quelle
+        \item plagiarismLength: Prozentualer Anteil der Plagiate dieser Quelle an der Bachelorarbeit
+        \item occurrences: Liste mit Fundstellen von Plagiaten aus dieser Quelle
+        \begin{itemize}
+            \item startChar: Startposition des Plagiats in der Bachelorarbeit
+            \item endChar: Endposition des Plagiats in der Bachelorarbeit
+            \item certainty: Sicherheit mit der das Plagiat erkannt wurde
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
 
 \section{Schnittstelle zu KI}\label{sec:schnittstelle-ki}
+\begin{tabularx}{\textwidth}{l|X}
+    \hline
+    \textbf{Art} & Datenschnittstelle von/zu externen System \\
+    \hline
+    \textbf{Beschreibung} & Diese Schnittstelle wird von AiPlagiarismChecker verwendet um einen Prompt an das KI-System zu übertragen.
+                            Der Prompt basiert dabei auf den von BachelorChecker gesendeten Daten.\\
+    \hline
+    \textbf{Komplexität} & einfach \\
+    \hline
+    \textbf{Hinweise zur Verwendung} & Schnittstellen zu chatbasierten KIs sind in der Regel nicht kostenfrei, es fällt also für jede Anfrage eine Gebühr an.
+                                        Die Verfügbarkeit der chatbasierten KI kann nicht durch AiPlagiarismChecker garantiert bzw. sichergestellt werden.
+                                        Es besteht die Möglichkeit, dass das KI-System den übertragenen Prompt nicht interpretieren oder AiPlagiarismChecker die Antwort der KI nicht verarbeiten kann.
+                                        In diesen beiden Fällen kann kein Ergebnis erzeugt werden.\\
+\end{tabularx}
