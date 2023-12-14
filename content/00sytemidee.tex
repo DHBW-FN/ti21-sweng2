@@ -17,14 +17,13 @@ Die empfangenen Daten werden vom \ac{AiPC}-System aufbereitet und in ein geeigne
 Diese führt die Plagiatsprüfung auf Basis der im Prompt bereitgestellten Daten anhand verschiedener Literaturdatenbanken durch.
 Das Ergebnis dieser Überprüfung wird von der \ac{KI} in einem JSON-Format mit einer Liste der übereinstimmenden Literaturen und dem prozentualen Übereinstimmungsgrad je Literatur an den AiPlagiarismChecker zurückgegeben.
 Dort wird das resultierende \ac{JSON}-Objekt validiert und weiter aufbereitet, um dann dem BachelorChecker bereitgestellt zu werden.
-Falls die Plagiatsprüfung nicht innerhalb eines festgelegten Zeitraums abgeschlossen werden kann, wird dem Auftraggeber die Möglichkeit gegeben, die Informationen, sobald sie verfügbar sind, abzurufen.
+Falls die Plagiatsprüfung nicht innerhalb eines festgelegten Zeitraums abgeschlossen werden kann, wird dem Auftraggeber eine alternative Möglichkeit zur Übergabe gegeben.
 
 \section{Voraussetzungen an den BachelorChecker}\label{sec:voraussetzungen-an-den-bachelorchecker}
 
 Es wird erwartet, dass der BachelorChecker in der Lage ist, \ac{HTTP}-Anfragen an die Schnittstelle des \ac{AiPC} zu senden.
 Dabei übermittelt er eine nicht gesperrte \ac{PDF}-Datei sowie zusätzliche Informationen in Form einer \ac{JSON}-Datei.
 Des Weiteren soll der BachelorChecker in der Lage sein, die resultierenden \ac{HTTP}-Antworten zu verarbeiten, die die Ergebnisse der Plagiatsprüfung enthalten.
-Die regelmäßige Abfrage des Status der Plagiatsprüfung wird ebenfalls als Voraussetzung für den BachelorChecker betrachtet.
 
 Zusätzlich wird erwartet, dass der Auftraggeber eine angemessene Infrastruktur bereitstellt, auf der die Softwarelösung \ac{AiPC} betrieben werden kann.
 Es ist ebenfalls erforderlich sicherzustellen, dass diese Infrastruktur in der Lage ist, effektiv mit der chatbasierten \ac{KI} zu kommunizieren.
@@ -40,7 +39,6 @@ Diese erste Entwicklungsstufe wird nochmals unterteilt in einzelne Meilensteine,
 \subsubsection{Meilenstein 1: Schnittstellenimplementierung}
 In diesem ersten Meilenstein soll die Schnittstelle des \ac{AiPC} implementiert werden.
 Diese soll in der Lage sein, die von dem BachelorChecker gesendeten Daten zu empfangen und an die weiterverarbeitenden Komponenten weiterzuleiten.
-Hier wird bereits berücksichtigt, dass die \ac{KI} möglicherweise nicht in der Lage ist, die Plagiatsprüfung innerhalb eines festgelegten Zeitraums abzuschließen.
 
 \subsubsection{Meilenstein 2: Generierung eines Prompts}
 In diesem Meilenstein soll die Generierung eines Prompts implementiert werden.
