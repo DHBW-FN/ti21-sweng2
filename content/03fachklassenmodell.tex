@@ -2,6 +2,8 @@
 
 
 \section{Beziehungsdiagramm}\label{sec:beziehungsdiagramm}
+Im folgenden Beziehungsdiagramm (Abbildung~\ref{fig:beziehungsdiagramm}) sind die Beziehungen zwischen den einzelnen Klassen dargestellt.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{images/diagrams/Beziehungsdiagramm}
@@ -28,6 +30,7 @@ Der Controller enthält außerdem die an die Schnittstelle gesendeten Anfragen u
 
 \subsection{Author}\label{subsec:author}
 Die Author-Klasse stellt einen Autor dar und enthält den Namen des Autors.
+In unserem System repräsentiert sie den Autor einer Bachelorarbeit oder den Autor einer Quelle.
 
 \subsection{Source}\label{subsec:source}
 Die Source-Klasse stellt eine Quelle dar.
@@ -38,6 +41,9 @@ Sie enthält Informationen über den Autor, den Titel und die ISBN der Quelle.
 
 \subsubsection{PlagiarismCheckResult}\label{subsubsec:plagiarism_check_result}
 Diese Klasse wird verwendet, um das von der KI gesendete Ergebnis der Überprüfung in einem einheitlichen Format zu halten.
+Sie enthält eine Liste von PlagiarismSources, die die Quellen des Plagiats darstellen.
+Zudem enthält sie eine Kurzzusammenfassung des Ergebnisses der Überprüfung,
+den Autor und den Inhalt der Bachelorarbeit.
 
 \subsubsection{PlagiarismOccurrence}\label{subsubsec:plagiarism_occurrence}
 Dieses Modell repräsentiert eine einzelne Quelle eines möglichen Plagiats.
@@ -47,7 +53,7 @@ den Autor der Quelle, und die Stellen, an denen das Plagiat aufgetreten ist.
 \subsubsection{PlagiarismSource}\label{subsubsec:plagiarism_source}
 Diese Klasse erweitert die Source-Klasse um die Informationen, die für die Plagiatsprüfung benötigt werden.
 Eine solche Information ist beispielsweise eine Liste mit Stellen im Text, die der Quelle zugeordnet werden können.
-Auch zusätzliche Funktionalität wie die Anzahl der Zeichen die für diese Quelle als Plagiat im Text markiert wurden,
+Auch zusätzliche Funktionalität wie die Anzahl der Zeichen, die für diese Quelle als Plagiat im Text markiert wurden,
 wird in dieser Klasse implementiert.
 
 \subsection{AI}\label{subsec:ai}
@@ -62,9 +68,9 @@ welcher von dem verwendeten KI-System interpretiert werden kann.
 Nach Erhalt einer Antwort durch das KI-System wandelt er diese in ein internes Objekt zur Datenhaltung um.
 
 \subsubsection{AiAdapter}\label{subsubsec:ai_adapter}
-Die AiAdapter-Klasse ist für die Kommunikation mit der AI-Engine verantwortlich, die die Plagiatsprüfung durchführt.
-Die Klasse nimmt Texteingaben von Benutzern entgegen und sendet sie an die AI-Engine zur Analyse.
-Diese sendet dann eine Antwort zurück, die von der AiAdapter-Klasse weiterverarbeitet wird.
+Die AiAdapter-Klasse ist für die Kommunikation mit dem KI-System verantwortlich, welches die Plagiatsprüfung durchführt.
+Die Klasse nimmt Texteingaben entgegen und sendet sie an das KI-System zur Analyse.
+Dieses sendet dann eine Antwort zurück, die von der AiAdapter-Klasse weiterverarbeitet wird.
 
 \subsection{Response}\label{subsec:response}
 
@@ -78,7 +84,7 @@ Der ResponseService wird verwendet, um aus dem Objekt zur internen Datenhaltung 
 \subsection{Utils}\label{subsec:utils}
 
 \subsubsection{Parser}\label{subsubsec:parser}
-Die abstrakte Parser-Klasse beschreibt die fü einen Parser benötigten Methoden und gibt grundlegende Implementierungen schon mit.
+Die abstrakte Parser-Klasse beschreibt die für einen Parser benötigten Methoden und gibt grundlegende Implementierungen schon mit.
 Durch die Erweiterung dieser Klasse wird sichergestellt,
 dass Parser die gleichen Methoden verwenden, egal welches Format sie verarbeiten.
 
