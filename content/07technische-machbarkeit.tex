@@ -26,8 +26,8 @@ Diese Schichten lauten:
 Dabei ist wichtig zu überprüfen, ob die ausgewählten Technologien
 aus den verschiedenen Schichten miteinander kompatibel sind.
 
-Auch eine Alternative zur Übergabe des Ergebnisses der Plagiatsprüfung,
-falls das HTTP-Timeout ausläuft, wird dabei definiert.
+Auch auf die Notwendigkeit einer Alternative zur Übergabe des Ergebnisses der Plagiatsprüfung,
+falls das HTTP-Timeout ausläuft, wird hierbei eingegangen.
 
 Sobald die Technologieentscheidungen getroffen wurden,
 wird die technische Machbarkeit des geplanten Systems bewiesen.
@@ -250,16 +250,26 @@ Außerdem ist es das Modell, welches am weitesten verbreitet ist.
 Es wurde ausgewählt, da es eine einfache Möglichkeit bietet, mit dem Modell zu interagieren.
 Zudem wird es von OpenAI selbst entwickelt und ist somit immer auf dem neuesten Stand.
 
+% TODO: Argumentation, dass wir in keine Timeouts laufen --> deswegen keine Alternative in ursprünglicher OOA
+
 \subsection{Alternative zur Übergabe der Antwort}\label{subsec:alternative-zur-uebergabe-der-antwort}
-Eine weitere wichtige Entscheidung ist die Art und Weise, wie die Antwort an den BachelorChecker übergeben wird,
-falls das Timeout überschritten wurde.
+Wie aus dem vorherigen Abschnitt hervorgeht, ist für unser System eine Alternative zur Übergabe der Antwort
+an den BachelorChecker nicht notwendig.
+Sollte das auftraggebende Unternehmen allerdings in Zukunft ein anderes KI-System verwenden wollen (z.B.\ ein selbst entwickeltes System),
+dann kann es auch passieren, dass die Antwort nicht innerhalb des HTTP-Timeouts zurückgegeben werden kann.
+
+In diesem Fall sollte eine Alternative zur Übergabe der Antwort an den BachelorChecker implementiert werden.
+Vorbereitend auf diesen Fall soll nachfolgend eine mögliche Alternative vorgestellt werden.
+Dabei wird auch darauf eingegangen, wie diese Alternative in das System integriert werden kann.
+
 Hierbei ist es üblich, nach dem Timeout den Statuscode 202 zurückzugeben.
-Dieser bedeutet, dass die Anfrage akzeptiert wurde, aber noch nicht bearbeitet wurde\autocite{mozilla}.
+Dieser bedeutet, dass die Anfrage akzeptiert wurde, aber noch nicht bearbeitet werden konnte\autocite{mozilla}.
 Bei dieser Antwort wird dem BachelorChecker die ID inklusive der Webadresse des Auftrags mitgegeben,
 welche dieser dann in regelmäßigen Abständen abfragen kann, um den aktuellen Status des Auftrags zu erhalten.
 
 Sollte der Auftrag in der Zwischenzeit fertig werden, dann wird auf diese regelmäßigen Abfragen das Ergebnis
 der Plagiatsprüfung weitergegeben.
 
+% TODO: Wie binden wir diese Funktion in unser System ein?
 
 \section{Machbarkeitsbeweis}\label{sec:machbarkeitsbeweis}
