@@ -32,17 +32,17 @@ class Source {
     Author author
 }
 
-interface Parser {
+abstract class Parser {
     +validate(File)
     +parse(File)
 }
 
-class PdfParser implements Parser {
+class PdfParser extends Parser {
     +validate(File)
     +parse(File)
 }
 
-class JsonParser implements Parser {
+class JsonParser extends Parser {
     Schema schema
     +validate(File)
     +parse(File)
