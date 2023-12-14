@@ -1,4 +1,4 @@
-@startuml GPD-Eingang der Daten vom BachelorChecker
+@startuml GPD-Auslesen der Bachelorarbeit
 |AiPlagiarismChecker|
 start
 :Dateien erfolgreich empfangen und validiert;
