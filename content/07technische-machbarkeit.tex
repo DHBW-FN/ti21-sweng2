@@ -43,7 +43,7 @@ welche kritisch für das Gesamtsystem sind:
 \end{itemize}
 
 
-\section{Ausschlusskriterien}\label{sec:ausschlusskriterien}
+\section{(Ausschluss-)Kriterien}\label{sec:ausschlusskriterien}
 
 \paragraph{Freie Verwendung (Gesetze)}\label{par:freie-verwendung}
 Das erste Ausschlusskriterium ist die freie Verwendung der Technologien.
@@ -73,17 +73,15 @@ Umso schneller unser System ein Ergebnis an den BachelorChecker weitergeben kann
 desto besser ist auch die Erfahrung des Benutzers mit der Applikation.
 
 Auch in Bezug auf die Langlebigkeit des Systems ist die Performance ein wichtiger Faktor.
-Durch eine hohe Performance kann die Lebensdauer des Systems verlängert werden,
-da die Hardware nicht so schnell ausgetauscht werden muss.
+Durch eine hohe Performance kann die Lebensdauer des Systems verlängert, oder die Effizienz gesteigert werden.
 
 \paragraph{Skalierbarkeit (Unternehmen)}\label{par:skalierbarkeit}
 Auch die Skalierbarkeit der Technologien ist entscheidend.
-Dabei muss beachtet werden, dass das auftraggebende
-Unternehmen in den nächsten wachsen will.
-Dementsprechend muss auch dieses System den
+Dabei muss beachtet werden, dass bei Wachstum des Unternehmens auch das System mitwachsen muss.
+Dementsprechend muss auch der \ac{AiPC} den
 Herausforderungen einer gestiegenen Nachfrage gewachsen sein.
 
-\paragraph{Sicherheit (Gesetz, Unternehme)}\label{par:sicherheit}
+\paragraph{Sicherheit (Gesetz, Unternehmen)}\label{par:sicherheit}
 Die Sicherheit der Nutzerdaten darf durch die verwendeten Technologien nicht gefährdet werden.
 Je nach Art der Bachelorarbeit kann es vorkommen, dass diese vertrauliche Informationen enthält,
 die nicht an die Öffentlichkeit gelangen dürfen.
@@ -99,20 +97,20 @@ da dieses die Grundlage für die weiteren Entscheidungen bildet.
 Die restlichen Schichten müssen dementsprechend mit dem Betriebssystem kompatibel sein.
 
 \subsection{Betriebssystem}\label{subsec:betriebssystem}
-Bei der Wahl des Betriebssystems stehen gibt es grundsätzlich drei Möglichkeiten,
+Bei der Wahl des Betriebssystems gibt es grundsätzlich drei Möglichkeiten,
 welche aufgrund der Marktsituation in Betracht gezogen werden können.
 So sind Windows, MacOS und Linux die drei meistverbreiteten Betriebssysteme für die Entwicklung von Software\autocite{JetBrains-2023}.
 
-Da es bei Linux als einzige der drei Optionen um ein Open-Source Betriebssystem handelt,
+Da es sich bei Linux als einzige der drei Optionen um ein Open-Source Betriebssystem handelt,
 ist dieses für die Verwendung in diesem System am besten geeignet.
 So profitiert Linux von der großen Entwicklergemeinde, welche das Betriebssystem stetig weiterentwickelt.
 Auch die Sicherheit ist bei Linux im Vergleich zu den anderen beiden Betriebssystemen am höchsten,
 da es sich um ein Open-Source Betriebssystem handelt und somit jeder die Möglichkeit hat,
 den Quellcode einzusehen und mögliche Sicherheitslücken zu finden und zu beheben.
 
-Unter den verschiedenen Linux Distributionen bietet sich Ubuntu als die beste Option an.
-Ubuntu ist die meistverbreitete Linux Distribution und wird von Canonical entwickelt.
-Mit einem garantierten Support bis 2032 ist Ubuntu Server auch für die Langlebigkeit des Systems geeignet\autocite{ubuntu}.
+Unter den verschiedenen Linux Distributionen gibt es viele Möglichkeiten, welche für die Verwendung in diesem System geeignet sind.
+Dabei ist es wichtig, dass die Distribution eine lange Unterstützungsdauer hat.
+Unsere Empfehlung ist hierbei Ubuntu Server, da diese Distribution eine Unterstützungsdauer bis 2032 garantiert\autocite{ubuntu}.
 
 \subsection{Hardware}\label{subsec:hardware}
 Bei der Auswahl der Hardware ist es wichtig, dass diese mit dem ausgewählten Betriebssystem kompatibel ist.
@@ -133,7 +131,7 @@ Diese Kriterien sind eingeteilt in “Muss”- und “Kann”-Kriterien.
 Folgende Kriterien müssen erfüllt werden:
 \begin{itemize}
     \item \textbf{Objektorientierung} Die Sprache muss es ermöglichen, objektorientiert zu programmieren
-    \item \textbf{REST-fähig} Die Sprache muss es ermöglichen, eine REST-Schnittstelle dem Kundensystem BachelorChecker bereitzustellen
+    \item \textbf{REST-fähig} Die Sprache muss es ermöglichen, dem Kundensystem BachelorChecker eine REST-Schnittstelle bereitzustellen
     \item \textbf{Testfähigkeit} Die Sprache muss es ermöglichen, das System systematisch ohne großen Mehraufwand zu testen
 \end{itemize}
 
@@ -144,7 +142,7 @@ positiv in den Entscheidungsprozess ein, falls diese erfüllt werden:
     Dies ist insbesondere für mögliche Weiterentwicklungen des Systems hilfreich,
     bei denen beispielsweise die KI zur Plagiatsprüfung selbst entwickelt werden soll.
     \item \textbf{Generierung von Dokumentation} Die Sprache sollte es ermöglichen, Dokumentation für den Code
-    automatisch generieren zu lassen und den manuellen Dokumentationsaufwand gering halten.
+    automatisch generieren zu lassen, um den manuellen Dokumentationsaufwand gering zu halten.
 \end{itemize}
 Unter dem Aspekt der weiten Verbreitung der Programmiersprachen
 stechen vornehmlich die Sprachen Java, Python und JavaScript hervor.
@@ -209,7 +207,7 @@ So kann einfacher die Machbarkeit anhand eines Prototyps bewiesen werden.
 \subsubsection{Auslesen der PDF}\label{subsubsec:pdf}
 Der nächste kritische Punkt des Systemablaufs ist das Auslesen der PDF-Dateien.
 Hierzu soll eine Bibliothek verwendet werden, welche diese Funktionalitäten bereitstellen kann.
-Dabei wird die Annahme gemacht, dass die PDF-Dateien in einem maschinenlesbaren Format von BachelorChecker bereitgestellt werden.
+Dabei wird die Annahme gemacht, dass die PDF-Dateien in einem maschinenlesbaren Format vom BachelorChecker bereitgestellt werden.
 
 Die Auswahl an Bibliotheken ist hierbei sehr umfassend.
 Die Wahl fiel letztendlich auf die Bibliothek pypdf.
@@ -218,7 +216,7 @@ Somit ist auch hier die Langlebigkeit des Systems gewährleistet.
 
 \subsubsection{Schnittstelle zu chatbasierter KI}\label{subsubsec:ki}
 Der letzte kritische Punkt des Systems ist die Schnittstelle zu der chatbasierten KI.
-Hierbei ist es wichtig, dass die Bibliothek die Möglichkeit bietet, die KI über eine REST-Schnittstelle anzusprechen.
+Hierbei ist es wichtig, dass die Bibliothek die Möglichkeit bietet, die KI über eine Schnittstelle anzusprechen.
 Da die KI in Python entwickelt werden soll, ist es wichtig, dass die Bibliothek auch mit Python kompatibel ist.
 
 \paragraph{Das LargeLanguageModel (chatbasierte KI)} auszuwählen ist nicht einfach,
@@ -246,13 +244,14 @@ Die Auswahl beschränkt sich somit auf folgende Modelle
 
 Von diesen Modellen ist ChatGPT jenes, welches für die technische Machbarkeit genutzt wird.
 Es wurde ausgewählt, da OpenAI API-Keys für die Nutzung des Modells vergibt und mit geringem Aufwand und Kosten genutzt werden kann.
-Außerdem ist es das Modell, welches am weitesten verbreitet ist.
+Außerdem ist es das Modell, welches am weitesten verbreitet\autocite{statista.gpt} ist.
+% TODO Raussuchen warum GPT besser ist als andere Modelle
 
 \paragraph{Das openai Package} wird benutzt, um mit dem Modell zu interagieren.
-Es wurde ausgewählt, da es eine einfache Möglichkeit bietet, mit dem Modell zu interagieren.
+Es wurde ausgewählt, da es einfach zu benutzen ist.
 Zudem wird es von OpenAI selbst entwickelt und ist somit immer auf dem neuesten Stand.
 
-% TODO: Argumentation, dass wir in keine Timeouts laufen --> deswegen keine Alternative in ursprünglicher OOA
+% TODO Argumentation, dass wir in keine Timeouts laufen --> deswegen keine Alternative in ursprünglicher OOA
 
 \subsection{Alternative zur Übergabe der Antwort}\label{subsec:alternative-zur-uebergabe-der-antwort}
 Wie aus dem vorherigen Abschnitt hervorgeht, ist für unser System eine Alternative zur Übergabe der Antwort
@@ -272,7 +271,7 @@ welche dieser dann in regelmäßigen Abständen abfragen kann, um den aktuellen 
 Sollte der Auftrag in der Zwischenzeit fertig werden, dann wird auf diese regelmäßigen Abfragen das Ergebnis
 der Plagiatsprüfung weitergegeben.
 
-% TODO: Wie binden wir diese Funktion in unser System ein?
+% TODO Wie binden wir diese Funktion in unser System ein?
 
 
 \section{Machbarkeitsbeweis}\label{sec:machbarkeitsbeweis}
