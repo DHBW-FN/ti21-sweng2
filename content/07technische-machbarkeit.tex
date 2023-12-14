@@ -42,6 +42,7 @@ welche kritisch für das Gesamtsystem sind:
     \item Schnittstelle zu chatbasierter KI zur Plagiatsprüfung
 \end{itemize}
 
+
 \section{Ausschlusskriterien}\label{sec:ausschlusskriterien}
 
 \paragraph{Freie Verwendung (Gesetze)}\label{par:freie-verwendung}
@@ -88,6 +89,7 @@ Je nach Art der Bachelorarbeit kann es vorkommen, dass diese vertrauliche Inform
 die nicht an die Öffentlichkeit gelangen dürfen.
 Dies ist zum einen rechtlich nicht erlaubt, zum anderen würde das auftraggebende Unternehmen
 dadurch einen erheblichen Schaden, sowohl durch mögliche Klagen als auch auf das Image bezogen, erleiden.
+
 
 \section{Technologieentscheidungen}\label{sec:technologieentscheidungen}
 Nachfolgend werden die Technologieentscheidungen für die verschiedenen Schichten des Systems getroffen.
@@ -139,10 +141,10 @@ Nachfolgende Kriterien hingegen sind optional, fließen aber
 positiv in den Entscheidungsprozess ein, falls diese erfüllt werden:
 \begin{itemize}
     \item \textbf{Entwicklungsfähigkeit im Bereich KI} Die Sprache sollte es ermöglichen, eine KI zu entwickeln.
-            Dies ist insbesondere für mögliche Weiterentwicklungen des Systems hilfreich,
-            bei denen beispielsweise die KI zur Plagiatsprüfung selbst entwickelt werden soll.
+    Dies ist insbesondere für mögliche Weiterentwicklungen des Systems hilfreich,
+    bei denen beispielsweise die KI zur Plagiatsprüfung selbst entwickelt werden soll.
     \item \textbf{Generierung von Dokumentation} Die Sprache sollte es ermöglichen, Dokumentation für den Code
-            automatisch generieren zu lassen und den manuellen Dokumentationsaufwand gering halten.
+    automatisch generieren zu lassen und den manuellen Dokumentationsaufwand gering halten.
 \end{itemize}
 Unter dem Aspekt der weiten Verbreitung der Programmiersprachen
 stechen vornehmlich die Sprachen Java, Python und JavaScript hervor.
@@ -153,14 +155,14 @@ Die weiteren Kriterien zur Technologieentscheidung werden nachfolgend überprüf
 
 \begin{table}[H]
     \begin{tabularx}{\textwidth}{l|X|X|X}
-        & \textbf{Java} & \textbf{Python} & \textbf{JavaScript} \\ \hline
-        \textbf{Freie Verwendung} & \cellcolor{red!30} Proprietär & \cellcolor{green!30}Ja & \cellcolor{green!30}Ja \\ \hline
-        \textbf{Skalierbarkeit} & \cellcolor{green!30}Hoch & \cellcolor{orange!30}Mittel & \cellcolor{green!30}Am Höchsten \\ \hline
-        \textbf{Performance} & \cellcolor{green!30}Hoch & \cellcolor{green!30}Hoch & \cellcolor{red!30}Niedrig \\ \hline
-        \textbf{Objektorientierung} & \cellcolor{green!30}Ja & \cellcolor{green!30}Ja & \cellcolor{green!30}Ja \\ \hline
-        \textbf{REST-fähig} & \cellcolor{green!30}Ja, z.B.\ mit Spring & \cellcolor{green!30}Ja, z.B.\ mit Flask & \cellcolor{green!30}Ja, z.B.\ mit node.js \\ \hline
-        \textbf{Testfähig} & \cellcolor{green!30}Ja & \cellcolor{green!30}Ja & \cellcolor{green!30}Ja \\ \hline
-        \textbf{Entwicklung einer KI} & \cellcolor{orange!30}Ungewöhnlich, aber möglich mit z.B.\ Deeplearning4j & \cellcolor{green!30}Beliebteste Programmiersprache im Kontext von KI-Entwicklung & \cellcolor{orange!30}Ungewöhnlich, aber möglich mit z.B.\ TensorFlow.js \\ \hline
+        ~                                      & \textbf{Java}                                                            & \textbf{Python}                                                                  & \textbf{JavaScript}                                                     \\ \hline
+        \textbf{Freie Verwendung}              & \cellcolor{red!30} Proprietär                                            & \cellcolor{green!30}Ja                                                           & \cellcolor{green!30}Ja                                                  \\ \hline
+        \textbf{Skalierbarkeit}                & \cellcolor{green!30}Hoch                                                 & \cellcolor{orange!30}Mittel                                                      & \cellcolor{green!30}Am Höchsten                                         \\ \hline
+        \textbf{Performance}                   & \cellcolor{green!30}Hoch                                                 & \cellcolor{green!30}Hoch                                                         & \cellcolor{red!30}Niedrig                                               \\ \hline
+        \textbf{Objektorientierung}            & \cellcolor{green!30}Ja                                                   & \cellcolor{green!30}Ja                                                           & \cellcolor{green!30}Ja                                                  \\ \hline
+        \textbf{REST-fähig}                    & \cellcolor{green!30}Ja, z.B.\ mit Spring                                 & \cellcolor{green!30}Ja, z.B.\ mit Flask & \cellcolor{green!30}Ja, z.B.\ mit node.js \\ \hline
+        \textbf{Testfähig}                     & \cellcolor{green!30}Ja                                                   & \cellcolor{green!30}Ja                                                           & \cellcolor{green!30}Ja                                                  \\ \hline
+        \textbf{Entwicklung einer KI}          & \cellcolor{orange!30}Ungewöhnlich, aber möglich mit z.B.\ Deeplearning4j & \cellcolor{green!30}Beliebteste Programmiersprache im Kontext von KI-Entwicklung & \cellcolor{orange!30}Ungewöhnlich, aber möglich mit z.B.\ TensorFlow.js \\ \hline
         \textbf{Generierung der Dokumentation} & \cellcolor{green!30}Möglich mit z.B.\ JavaDoc & \cellcolor{green!30}Möglich mit z.B.\ Doxygen & \cellcolor{green!30}Möglich mit z.B.\ JSDoc \\
     \end{tabularx}
     \caption{Technologieentscheidung Programmiersprache}
@@ -271,5 +273,6 @@ Sollte der Auftrag in der Zwischenzeit fertig werden, dann wird auf diese regelm
 der Plagiatsprüfung weitergegeben.
 
 % TODO: Wie binden wir diese Funktion in unser System ein?
+
 
 \section{Machbarkeitsbeweis}\label{sec:machbarkeitsbeweis}
