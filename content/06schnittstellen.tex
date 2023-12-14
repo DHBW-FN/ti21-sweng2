@@ -9,21 +9,24 @@
         \hline
         \textbf{Art}         & Datenschnittstelle von/zu externem System \\
         \hline
-        \textbf{Beschreibung} & Die Schnittstelle zu BachelorChecker dient dem Kunden dazu, die Bachelorarbeit und JSON-Datei mit Zusatzinformationen an AiPlagiarismChecker zu übergeben.
-        Auch dient die Schnittstelle der Übertragung einer JSON-Datei mit dem Ergebnis der Überprüfung zurück an BachelorChecker. \\
+        \textbf{Beschreibung} & Die Schnittstelle zum BachelorChecker dient dem Kunden dazu, die Bachelorarbeit und JSON-Datei mit Zusatzinformationen an den AiPlagiarismChecker zu übergeben.
+        Auch dient die Schnittstelle der Übertragung einer JSON-Datei mit dem Ergebnis der Überprüfung zurück an den BachelorChecker. \\
         \hline
         \textbf{Komplexität} & normal                                    \\
         \hline
-        \textbf{Hinweise zur Verwendung} & Es wird nur ein Endpunkt angeboten und es erfolgt durch den AiPlagiarismChecker keine Authentifizierung.
-        Die übertragene PDF muss nicht-gesperrt sein und die JSON-Datei muss ein noch zu bestätigendes Schema erfüllen.
-        \autoref{lst:json-zusatzinfo} zeigt das Schema wie es vom potenziellen Auftragnehmer vorgeschlagen wird. \\
+        \textbf{Hinweise zur Verwendung} & Es wird nur ein Endpunkt angeboten.
+        Außerdem erfolgt durch den AiPlagiarismChecker keine Authentifizierung, da das System nur innerhalb des Kundennetzwerks zu erreichen ist.
+        Die übertragene PDF darf nicht gesperrt sein und die JSON-Datei muss ein noch zu bestätigendes Schema erfüllen.
+        \autoref{lst:json-zusatzinfo} zeigt das Schema wie es vom Auftragnehmer vorgeschlagen wird.
+        Auch das Ergebnis der Überprüfung wird als JSON-Datei übertragen.
+        Einen Vorschlag für die Struktur dieses Schemas zeigt \autoref{lst:json-ergebnis}\\
         \hline
     \end{tabularx}
     \caption {Schnittstelle zu BachelorChecker}
 \end{table}
 
 \subsection{Aufbau der JSON-Datei mit Zusatzinformationen}\label{subsec:json-zusatzinfo}
-\begin{lstlisting}[caption={JSON-Datei mit Zusatzinformationen},captionpos=b,label={lst:json-zusatzinfo}]
+\begin{lstlisting}[caption={JSON-Datei mit Zusatzinformationen},captionpos=b,label={lst:json-zusatzinfo}, language=json]
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
@@ -70,7 +73,7 @@ Erklärung der Attribute:
 \end{itemize}
 
 \subsection{Aufbau der JSON-Datei mit einem Ergebnis}\label{subsec:json-ergebnis}
-\begin{lstlisting}[caption={JSON-Datei mit einem Ergebnis},captionpos=b,label={lst:json-ergebnis}]
+\begin{lstlisting}[caption={JSON-Datei mit einem Ergebnis},captionpos=b,label={lst:json-ergebnis}, language=json]
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
@@ -164,14 +167,14 @@ Erklärung der Attribute:
         \hline
         \textbf{Art}         & Datenschnittstelle von/zu externem System \\
         \hline
-        \textbf{Beschreibung} & Diese Schnittstelle wird von AiPlagiarismChecker verwendet, um einen Prompt an das KI-System zu übertragen.
+        \textbf{Beschreibung} & Diese Schnittstelle wird vom AiPlagiarismChecker verwendet, um einen Prompt an das KI-System zu übertragen.
         Der Prompt basiert dabei auf den von BachelorChecker gesendeten Daten. \\
         \hline
         \textbf{Komplexität} & einfach                                   \\
         \hline
         \textbf{Hinweise zur Verwendung} & Schnittstellen zu chatbasierten KIs sind in der Regel nicht kostenfrei, es fällt also für jede Anfrage eine Gebühr an.
-        Die Verfügbarkeit der chatbasierten KI kann nicht durch AiPlagiarismChecker garantiert bzw. sichergestellt werden.
-        Es besteht die Möglichkeit, dass das KI-System den übertragenen Prompt nicht interpretieren oder AiPlagiarismChecker die Antwort der KI nicht verarbeiten kann.
+        Die Verfügbarkeit der chatbasierten KI kann nicht durch den AiPlagiarismChecker garantiert bzw. sichergestellt werden.
+        Es besteht die Möglichkeit, dass das KI-System den übertragenen Prompt nicht interpretieren oder der AiPlagiarismChecker die Antwort der KI nicht verarbeiten kann.
         In diesen beiden Fällen kann kein Ergebnis erzeugt werden. \\
         \hline
     \end{tabularx}
