@@ -3,23 +3,23 @@
 \begin{table}[H]
     \begin{tabularx}{\textwidth}{|l|X|}
         \hline
-        \textbf{Name} & \textbf{Eingang der Daten vom BachelorChecker} \\
+        \textbf{Name}    & \textbf{Eingang der Daten vom BachelorChecker}                                                                                              \\
         \hline
         Kurzbeschreibung & Der BachelorChecker liefert die Daten an die zur Verfügung gestellte Schnittstelle, wo diese durch den AiPlagiarismChecker validiert werden \\
         \hline
-        Auslöser & Aufruf der Schnittstelle \\
+        Auslöser         & Aufruf der Schnittstelle                                                                                                                    \\
         \hline
-        Eingehende Daten & Bachelorarbeit als nicht gesperrtes PDF und optionale zusätzliche Informationen im JSON-Format \\
+        Eingehende Daten & Bachelorarbeit als nicht gesperrtes PDF und optionale zusätzliche Informationen im JSON-Format                                              \\
         \hline
-        Vorbedingung & Schnittstelle ist betriebs- und empfangsbereit \\
+        Vorbedingung     & Schnittstelle ist betriebs- und empfangsbereit                                                                                              \\
         \hline
-        Ergebnis & Daten wurden erfolgreich an AiPlagiarismChecker übertragen und validiert \\
+        Ergebnis         & Daten wurden erfolgreich an AiPlagiarismChecker übertragen und validiert                                                                    \\
         \hline
-        Nachbedingung & Bestätigung der erfolgreichen Datenübertragung an BachelorChecker \\
+        Nachbedingung    & Bestätigung der erfolgreichen Datenübertragung an BachelorChecker                                                                           \\
         \hline
-        Ausgehende Daten & Bachelorarbeit als nicht gesperrtes PDF und optionale zusätzliche Informationen im JSON-Format \\
+        Ausgehende Daten & Bachelorarbeit als nicht gesperrtes PDF und optionale zusätzliche Informationen im JSON-Format                                              \\
         \hline
-        Akteure & BachelorChecker, AiPlagiarismChecker \\
+        Akteure          & BachelorChecker, AiPlagiarismChecker                                                                                                        \\
         \hline
     \end{tabularx}
     \caption{Geschäftsfall: Eingang der Daten vom BachelorChecker}
@@ -29,23 +29,23 @@
 \begin{table}[H]
     \begin{tabularx}{\textwidth}{|l|X|}
         \hline
-        \textbf{Name} & \textbf{Auslesen der Bachelorarbeit und Zusatzinformationen} \\
+        \textbf{Name}    & \textbf{Auslesen der Bachelorarbeit und Zusatzinformationen}                                                                                                     \\
         \hline
         Kurzbeschreibung & Der Text einer Bachelorarbeit wird aus der nicht gesperrten PDF-Datei extrahiert und wenn vorhanden werden die Zusatzinformationen aus der JSON-Datei ausgelesen \\
         \hline
-        Auslöser & Eine Bachelorarbeit und eine JSON-Datei mit Zusatzinformationen wurden an die Schnittstelle übertragen \\
+        Auslöser         & Eine Bachelorarbeit und eine JSON-Datei mit Zusatzinformationen wurden an die Schnittstelle übertragen                                                           \\
         \hline
-        Eingehende Daten & Bachelorarbeit als ungesperrte PDF und JSON-Datei mit Zusatzinformationen\\
+        Eingehende Daten & Bachelorarbeit als ungesperrte PDF und JSON-Datei mit Zusatzinformationen                                                                                        \\
         \hline
-        Vorbedingung & Bachelorarbeit ist im richtigen Format und nicht gesperrt, und JSON-Datei hat das korrekte Schema \\
+        Vorbedingung     & Bachelorarbeit ist im richtigen Format und nicht gesperrt, und JSON-Datei hat das korrekte Schema                                                                \\
         \hline
-        Ergebnis & Der Text wurde erfolgreich aus der Bachelorarbeit extrahiert, und Zusatzinformationen wurden ausgelesen \\
+        Ergebnis         & Der Text wurde erfolgreich aus der Bachelorarbeit extrahiert, und Zusatzinformationen wurden ausgelesen                                                          \\
         \hline
-        Nachbedingung & - \\
+        Nachbedingung    & -                                                                                                                                                                \\
         \hline
-        Ausgehende Daten & Extrahierter Text aus der Bachelorarbeit und ausgelesene Zusatzinformationen \\
+        Ausgehende Daten & Extrahierter Text aus der Bachelorarbeit und ausgelesene Zusatzinformationen                                                                                     \\
         \hline
-        Akteure & AiPlagiarismChecker \\
+        Akteure          & AiPlagiarismChecker                                                                                                                                              \\
         \hline
     \end{tabularx}
     \caption{Geschäftsfall: Auslesen der Bachelorarbeit und Zusatzinformationen}
@@ -55,23 +55,23 @@
 \begin{table}[H]
     \begin{tabularx}{\textwidth}{|l|X|}
         \hline
-        \textbf{Name} & \textbf{Aufbereiten der Daten und Generierung eines Prompts für die KI} \\
+        \textbf{Name}    & \textbf{Aufbereiten der Daten und Generierung eines Prompts für die KI}            \\
         \hline
         Kurzbeschreibung & Die Daten werden aufbereitet und ein Prompt für die Weitergabe an die KI generiert \\
         \hline
-        Auslöser & Abschluss des Auslesens von Bachelorarbeit und Zusatzinformationen \\
+        Auslöser         & Abschluss des Auslesens von Bachelorarbeit und Zusatzinformationen                 \\
         \hline
-        Eingehende Daten & Extrahierter Text aus der Bachelorarbeit und ausgelesene Zusatzinformationen \\
+        Eingehende Daten & Extrahierter Text aus der Bachelorarbeit und ausgelesene Zusatzinformationen       \\
         \hline
-        Vorbedingung & - \\
+        Vorbedingung     & -                                                                                  \\
         \hline
-        Ergebnis & Bachelorarbeit und Zusatzinformationen wurden aufbereitet und ein Prompt generiert \\
+        Ergebnis         & Bachelorarbeit und Zusatzinformationen wurden aufbereitet und ein Prompt generiert \\
         \hline
-        Nachbedingung & Daten sind in einem für die KI verständlichen Format aufbereitet \\
+        Nachbedingung    & Daten sind in einem für die KI verständlichen Format aufbereitet                   \\
         \hline
-        Ausgehende Daten & Für die KI verständlicher Prompt basierend auf den aufbereiteten Daten \\
+        Ausgehende Daten & Für die KI verständlicher Prompt basierend auf den aufbereiteten Daten             \\
         \hline
-        Akteure & AiPlagiarismChecker \\
+        Akteure          & AiPlagiarismChecker                                                                \\
         \hline
     \end{tabularx}
     \caption{Geschäftsfall: Aufbereiten der Daten und Generierung eines Prompts für die KI}
@@ -82,23 +82,23 @@
 \begin{table}[H]
     \begin{tabularx}{\textwidth}{|l|X|}
         \hline
-        \textbf{Name} & \textbf{Weitergabe der Daten an KI} \\
+        \textbf{Name}    & \textbf{Weitergabe der Daten an KI}                                                                               \\
         \hline
         Kurzbeschreibung & Für die Verarbeitung durch die chatbasierte KI relevante Daten werden von AiPlagiarismChecker an diese übertragen \\
         \hline
-        Auslöser & Abschluss des Aufbereitens der Bachelorarbeit und Zusatzinformationen \\
+        Auslöser         & Abschluss des Aufbereitens der Bachelorarbeit und Zusatzinformationen                                             \\
         \hline
-        Eingehende Daten & Für die Verarbeitung durch die chatbasierte KI relevante Daten der Bachelorarbeit und der Zusatzinformationen \\
+        Eingehende Daten & Für die Verarbeitung durch die chatbasierte KI relevante Daten der Bachelorarbeit und der Zusatzinformationen     \\
         \hline
-        Vorbedingung & Daten wurden für die Verarbeitung durch die chatbasierte KI aufbereitet \\
+        Vorbedingung     & Daten wurden für die Verarbeitung durch die chatbasierte KI aufbereitet                                           \\
         \hline
-        Ergebnis & Die Daten wurden erfolgreich an die chatbasierte KI übertragen \\
+        Ergebnis         & Die Daten wurden erfolgreich an die chatbasierte KI übertragen                                                    \\
         \hline
-        Nachbedingung & Bestätigung des Datenerhalts durch das KI-System \\
+        Nachbedingung    & Bestätigung des Datenerhalts durch das KI-System                                                                  \\
         \hline
-        Ausgehende Daten & Für die Verarbeitung durch die chatbasierte KI relevante Daten der Bachelorarbeit und der Zusatzinformationen \\
+        Ausgehende Daten & Für die Verarbeitung durch die chatbasierte KI relevante Daten der Bachelorarbeit und der Zusatzinformationen     \\
         \hline
-        Akteure & AiPlagiarismChecker, Künstliche Intelligenz \\
+        Akteure          & AiPlagiarismChecker, Künstliche Intelligenz                                                                       \\
         \hline
     \end{tabularx}
     \caption{Geschäftsfall: Weitergabe der Daten an KI}
@@ -108,23 +108,23 @@
 \begin{table}[H]
     \begin{tabularx}{\textwidth}{|l|X|}
         \hline
-        \textbf{Name} & \textbf{Erhalt des Ergebnisses der KI} \\
+        \textbf{Name}    & \textbf{Erhalt des Ergebnisses der KI}                                                                                  \\
         \hline
-        Kurzbeschreibung & Das Ergebnis der KI wird empfangen, überprüft und zur Weiterverarbeitung in unserem System aufbereitet \\
+        Kurzbeschreibung & Das Ergebnis der KI wird empfangen, überprüft und zur Weiterverarbeitung in unserem System aufbereitet                  \\
         \hline
-        Auslöser & Ergebnis der Plagiatsprüfung wird vom KI-System an unser System gesendet \\
+        Auslöser         & Ergebnis der Plagiatsprüfung wird vom KI-System an unser System gesendet                                                \\
         \hline
-        Eingehende Daten & Ergebnis der Plagiatsprüfung durch die KI \\
+        Eingehende Daten & Ergebnis der Plagiatsprüfung durch die KI                                                                               \\
         \hline
-        Vorbedingung & - \\
+        Vorbedingung     & -                                                                                                                       \\
         \hline
-        Ergebnis & Ergebnis der KI wurde empfangen, überprüft und aufbereitet \\
+        Ergebnis         & Ergebnis der KI wurde empfangen, überprüft und aufbereitet                                                              \\
         \hline
-        Nachbedingung & Das überprüfte Ergebnis liegt in einem validierten, strukturierten Format vor und ist bereit für die Weiterverarbeitung \\
+        Nachbedingung    & Das überprüfte Ergebnis liegt in einem validierten, strukturierten Format vor und ist bereit für die Weiterverarbeitung \\
         \hline
-        Ausgehende Daten & Überprüftes und validiertes Ergebnis der KI \\
+        Ausgehende Daten & Überprüftes und validiertes Ergebnis der KI                                                                             \\
         \hline
-        Akteure & Künstliche Intelligenz, AiPlagiarismChecker \\
+        Akteure          & Künstliche Intelligenz, AiPlagiarismChecker                                                                             \\
         \hline
     \end{tabularx}
     \caption{Geschäftsfall: Erhalt des Ergebnisses der KI}
@@ -134,23 +134,23 @@
 \begin{table}[H]
     \begin{tabularx}{\textwidth}{|l|X|}
         \hline
-        \textbf{Name} & \textbf{Weiterverarbeitung des Ergebnisses der KI} \\
+        \textbf{Name}    & \textbf{Weiterverarbeitung des Ergebnisses der KI}                                                                                      \\
         \hline
-        Kurzbeschreibung & Das Ergebnis der KI wird zur späteren Übertragung an den BachelorChecker weiterverarbeitet \\
+        Kurzbeschreibung & Das Ergebnis der KI wird zur späteren Übertragung an den BachelorChecker weiterverarbeitet                                              \\
         \hline
-        Auslöser & Erfolgreiche Aufbereitung des Ergebnisses der Plagiatsüberprüfung durch die KI \\
+        Auslöser         & Erfolgreiche Aufbereitung des Ergebnisses der Plagiatsüberprüfung durch die KI                                                          \\
         \hline
-        Eingehende Daten & Aufbereitetes Ergebnis der Plagiatsprüfung durch die KI \\
+        Eingehende Daten & Aufbereitetes Ergebnis der Plagiatsprüfung durch die KI                                                                                 \\
         \hline
-        Vorbedingung & - \\
+        Vorbedingung     & -                                                                                                                                       \\
         \hline
-        Ergebnis & Das Ergebnis der KI wurde in ein durch den BachelorChecker verarbeitbares Format aufbereitet \\
+        Ergebnis         & Das Ergebnis der KI wurde in ein durch den BachelorChecker verarbeitbares Format aufbereitet                                            \\
         \hline
-        Nachbedingung & Das überprüfte Ergebnis liegt in einem für den BachelorChecker validierten, strukturierten Format vor und ist bereit für die Weitergabe \\
+        Nachbedingung    & Das überprüfte Ergebnis liegt in einem für den BachelorChecker validierten, strukturierten Format vor und ist bereit für die Weitergabe \\
         \hline
-        Ausgehende Daten & Für den BachelorChecker kompatibles Ergebnis der Plagiatsprüfung \\
+        Ausgehende Daten & Für den BachelorChecker kompatibles Ergebnis der Plagiatsprüfung                                                                        \\
         \hline
-        Akteure & AiPlagiarismChecker \\
+        Akteure          & AiPlagiarismChecker                                                                                                                     \\
         \hline
     \end{tabularx}
     \caption{Geschäftsfall: Weiterverarbeitung des Ergebnisses der KI}
@@ -161,23 +161,23 @@
 \begin{table}[H]
     \begin{tabularx}{\textwidth}{|l|X|}
         \hline
-        \textbf{Name} & \textbf{Übergabe des Ergebnisses an den BachelorChecker} \\
+        \textbf{Name}    & \textbf{Übergabe des Ergebnisses an den BachelorChecker}                      \\
         \hline
         Kurzbeschreibung & Das Ergebnis der KI-Plagiatsprüfung wird an den BachelorChecker weitergegeben \\
         \hline
-        Auslöser & Abschluss der Weiterverarbeitung des Ergebnisses der KI-Plagiatsprüfung \\
+        Auslöser         & Abschluss der Weiterverarbeitung des Ergebnisses der KI-Plagiatsprüfung       \\
         \hline
-        Eingehende Daten & Für den BachelorChecker kompatibles Ergebnis der Plagiatsprüfung \\
+        Eingehende Daten & Für den BachelorChecker kompatibles Ergebnis der Plagiatsprüfung              \\
         \hline
-        Vorbedingung & - \\
+        Vorbedingung     & -                                                                             \\
         \hline
-        Ergebnis & Ergebnis wurde erfolgreich an den BachelorChecker weitergegeben \\
+        Ergebnis         & Ergebnis wurde erfolgreich an den BachelorChecker weitergegeben               \\
         \hline
-        Nachbedingung & - \\
+        Nachbedingung    & -                                                                             \\
         \hline
-        Ausgehende Daten & Ergebnis der KI-Plagiatsprüfung als JSON-Datei \\
+        Ausgehende Daten & Ergebnis der KI-Plagiatsprüfung als JSON-Datei                                \\
         \hline
-        Akteure & AiPlagiarismChecker, Bachelorchecker \\
+        Akteure          & AiPlagiarismChecker, Bachelorchecker                                          \\
         \hline
     \end{tabularx}
     \caption{Geschäftsfall: Übergabe des Ergebnisses an den BachelorChecker}
