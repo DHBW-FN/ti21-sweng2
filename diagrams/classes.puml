@@ -1,44 +1,71 @@
 @startuml Klassendiagramm
 class PlagiarismCheckResult {
+    Author author
+    String thesisText
+    String summary
     List<PlagiarismSource> sources
-    -getPlagiarismCoverage(): int
-    +toJson(jsonResponseSchema):
+    +addSource(PlagiarismSource)
+    +getCoverage(): float
+    +getPlagiarismLength(): int
 }
 
-class PlagiarismSource {
+class PlagiarismSource extends Source {
+    List<PlagiarismOccurrence> occurrences
+    +addOccurrence(PlagiarismOccurrence)
+    +getPlagiarismLength(): int
+}
+
+class PlagiarismOccurrence {
+    int start
+    int end
+    float certainty
+    +getPlagiarismLength(): int
+}
+
+class Author {
+    String name
+}
+
+class Source {
     String isbn
-    List<(int, int)> occurrences
-    int coverage
+    String title
+    Author author
 }
 
-interface Parser {
+abstract class Parser {
     +validate(File)
     +parse(File)
 }
 
-class PdfParser implements Parser {
+class PdfParser extends Parser {
     +validate(File)
     +parse(File)
 }
 
-class JsonParser implements Parser {
+class JsonParser extends Parser {
+    Schema schema
     +validate(File)
     +parse(File)
     +validateSchema(Schema)
 }
 
 class Controller {
-    +checkPlagiarism(Thesis, AdditionalData): Json
+    PdfParser pdfParser
+    JsonParser jsonParser
+    AiController aiController
+    ResponseController responseController
+    +check(String, String): String
 }
 
 class AiController {
-    +checkPlagiarism(Thesis, AdditionalData): PlagiarismCheckResult
+    AiService aiService
+    +check(String, String): PlagiarismCheckResult
 }
 
 class AiService {
-    +checkPlagiarism(Thesis, AdditionalData): PlagiarismCheckResult
-    -generatePrompt(Thesis, AdditionalData): String
-    -getPlagiarismCheckResultFromString(String): PlagiarismCheckResult
+    AiAdapter aiAdapter
+    +check(String, String): PlagiarismCheckResult
+    -generate_setup_prompt(String): String
 }
 
 class AiAdapter {
@@ -46,12 +73,14 @@ class AiAdapter {
 }
 
 class ResponseController {
-    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): Json
+    Schema schema
+    ResponseService responseService
+    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): String
 }
 
 class ResponseService {
-    Schema jsonResponseSchema
-    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): Json
+    Schema schema
+    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): String
 }
 
 Controller "1" o-- "1" PdfParser
@@ -68,4 +97,7 @@ PlagiarismCheckResult -- AiService
 PlagiarismCheckResult -- ResponseService
 
 PlagiarismCheckResult "1" o-- "*" PlagiarismSource
+PlagiarismCheckResult "1" o-- "1" Author
+PlagiarismSource "1" o-- "1..*" PlagiarismOccurrence
+PlagiarismSource "1" o-- "1" Author
 @enduml
