@@ -1,18 +1,277 @@
 \chapter{Technische Machbarkeit}\label{ch:technische-machbarkeit}
+Nachfolgend sollen die technologischen Entscheidungen für unser System erfolgen
+und die technische Machbarkeit dieser Objektorientierten Analyse nachgewiesen werden.
+Um die Technologien einschränken zu können, werden (Ausschluss-)Kriterien definiert,
+nach welchen die verschiedenen Technologien bewertet werden.
+Diese leiten sich maßgeblich aus verschiedenen Einflussfaktoren ab.
+Konkret sind dabei diese fünf Faktoren zu nennen:
+
+\begin{itemize}
+    \item Entwickler/Zulieferer
+    \item Unternehmen
+    \item Markt
+    \item Zeit
+    \item Gesetze
+\end{itemize}
+
+Bei der Auswahl der Technologien wird sich auf vier Schichten bezogen,
+welche den Stack für dieses System darstellen.
+Diese Schichten lauten:
+\begin{itemize}
+    \item Hardware
+    \item Betriebssystem
+    \item Programmiersprache
+    \item Bibliotheken
+\end{itemize}
+Dabei ist wichtig zu überprüfen, ob die ausgewählten Technologien
+aus den verschiedenen Schichten miteinander kompatibel sind.
+
+Auch auf die Notwendigkeit einer Alternative zur Übergabe des Ergebnisses der Plagiatsprüfung,
+falls das HTTP-Timeout ausläuft, wird hierbei eingegangen.
+
+Sobald die Technologieentscheidungen getroffen wurden,
+wird die technische Machbarkeit des geplanten Systems bewiesen.
+Dazu wird ein Prototyp erstellt, welcher kritische Punkte des Systems abdeckt.
+Mit kritischen Punkte sind dabei solche Teile des Systems gemeint,
+ohne die das gesamte System nicht funktionieren würde.
+Konkret haben sich bei der Analyse drei Punkte herausgestellt,
+welche kritisch für das Gesamtsystem sind:
+\begin{itemize}
+    \item REST Schnittstelle
+    \item Auslesen der PDF
+    \item Schnittstelle zu chatbasierter KI zur Plagiatsprüfung
+\end{itemize}
 
 
-\section{Ausschlusskriterien}\label{sec:ausschlusskriterien}
+\section{(Ausschluss-)Kriterien}\label{sec:ausschlusskriterien}
+
+\paragraph{Freie Verwendung (Gesetze)}\label{par:freie-verwendung}
+Das erste Ausschlusskriterium ist die freie Verwendung der Technologien.
+Dabei ist wichtig zu betonen, dass durch Gesetze bzw.\ Lizenzen die
+Verwendung der Technologie nicht eingeschränkt werden soll.
+
+\paragraph{Weite Verbreitung (Entwickler, Unternehmen, Markt, Zeit)}\label{par:weite-verbreitung}
+Eine weite Verbreitung der verwendeten Technologien muss gegeben sein.
+Dies bedeutet, dass es marktüblich sein sollte, diese Technologie für den
+konkreten Anwendungsfall in unserem System zu verwenden.
+
+Ableiten lässt sich dieses Kriterium aus den Faktoren Entwickler, Unternehmen, Markt und Zeit.
+Die Entwickler können bei einer weit verbreiteten Technologie
+auf eine große Wissensbasis zu dieser Technologie zugreifen.
+Ebenso hat das auftraggebende Unternehmen den Vorteil, dass die Entwicklungskosten geringer sind,
+wenn bereits bewährte Technologien benutzt werden, und nicht von neu auf etwas entwickelt werden muss.
+
+In diesem Zusammenhang ist auch die Entwicklung der Technologie auf dem
+Markt in den letzten Jahre zu beachten.
+So ist es ebenfalls entscheidend, ob eine Technologie gerade im Aufschwung
+ist oder das Ende des Lebenszyklus erreicht hat.
+Dadurch kann eine Langlebigkeit des Systems gewährleistet werden.
+
+\paragraph{Performance (Unternehmen, Markt)}\label{par:performance}
+Die Performance des Systems ist ein wichtiger Aspekt der Technologieentscheidung.
+Umso schneller unser System ein Ergebnis an den BachelorChecker weitergeben kann,
+desto besser ist auch die Erfahrung des Benutzers mit der Applikation.
+
+Auch in Bezug auf die Langlebigkeit des Systems ist die Performance ein wichtiger Faktor.
+Durch eine hohe Performance kann die Lebensdauer des Systems verlängert, oder die Effizienz gesteigert werden.
+
+\paragraph{Skalierbarkeit (Unternehmen)}\label{par:skalierbarkeit}
+Auch die Skalierbarkeit der Technologien ist entscheidend.
+Dabei muss beachtet werden, dass bei Wachstum des Unternehmens auch das System mitwachsen muss.
+Dementsprechend muss auch der \ac{AiPC} den
+Herausforderungen einer gestiegenen Nachfrage gewachsen sein.
+
+\paragraph{Sicherheit (Gesetz, Unternehmen)}\label{par:sicherheit}
+Die Sicherheit der Nutzerdaten darf durch die verwendeten Technologien nicht gefährdet werden.
+Je nach Art der Bachelorarbeit kann es vorkommen, dass diese vertrauliche Informationen enthält,
+die nicht an die Öffentlichkeit gelangen dürfen.
+Dies ist zum einen rechtlich nicht erlaubt, zum anderen würde das auftraggebende Unternehmen
+dadurch einen erheblichen Schaden, sowohl durch mögliche Klagen als auch auf das Image bezogen, erleiden.
 
 
 \section{Technologieentscheidungen}\label{sec:technologieentscheidungen}
+Nachfolgend werden die Technologieentscheidungen für die verschiedenen Schichten des Systems getroffen.
+Dabei wird zuerst die Entscheidung für das Betriebssystem getroffen,
+da dieses die Grundlage für die weiteren Entscheidungen bildet.
 
-\subsection{Hardware}\label{subsec:hardware}
+Die restlichen Schichten müssen dementsprechend mit dem Betriebssystem kompatibel sein.
 
 \subsection{Betriebssystem}\label{subsec:betriebssystem}
+Bei der Wahl des Betriebssystems gibt es grundsätzlich drei Möglichkeiten,
+welche aufgrund der Marktsituation in Betracht gezogen werden können.
+So sind Windows, MacOS und Linux die drei meistverbreiteten Betriebssysteme für die Entwicklung von Software\autocite{JetBrains-2023}.
+
+Da es sich bei Linux als einzige der drei Optionen um ein Open-Source Betriebssystem handelt,
+ist dieses für die Verwendung in diesem System am besten geeignet.
+So profitiert Linux von der großen Entwicklergemeinde, welche das Betriebssystem stetig weiterentwickelt.
+Auch die Sicherheit ist bei Linux im Vergleich zu den anderen beiden Betriebssystemen am höchsten,
+da es sich um ein Open-Source Betriebssystem handelt und somit jeder die Möglichkeit hat,
+den Quellcode einzusehen und mögliche Sicherheitslücken zu finden und zu beheben.
+
+Unter den verschiedenen Linux Distributionen gibt es viele Möglichkeiten, welche für die Verwendung in diesem System geeignet sind.
+Dabei ist es wichtig, dass die Distribution eine lange Unterstützungsdauer hat.
+Unsere Empfehlung ist hierbei Ubuntu Server, da diese Distribution eine Unterstützungsdauer bis 2032 garantiert\autocite{ubuntu}.
+
+\subsection{Hardware}\label{subsec:hardware}
+Bei der Auswahl der Hardware ist es wichtig, dass diese mit dem ausgewählten Betriebssystem kompatibel ist.
+Laut eigener Aussage ist Ubuntu Server mit allen gängigen Prozessorarchitekturen kompatibel\autocite{ubuntu}.
+
+Dazu gehören unter anderem x86-64, ARM v7 und ARM64, welche zu den meistverbreiteten Prozessorarchitekturen gehören.
+Die letztendliche Auswahl der Hardware kann an diesem Punkt allerdings noch nicht getroffen werden,
+da die Hardwareanforderungen des Systems noch nicht bekannt sind.
+Auch die bereits vorhandene Hardware des auftraggebenden Unternehmens spielt hierbei eine Rolle.
+
+Sobald die Hardwareanforderungen des Systems bekannt sind, kann die Auswahl der Hardware getroffen werden.
 
 \subsection{Programmiersprache}\label{subsec:programmiersprache}
+Ein weiterer wichtiger Aspekt bei der Umsetzung des Systems ist die Programmiersprache.
+Zusätzlich zu den bereits genannten Ausschlusskriterien kommen hierbei noch weitere Kriterien hinzu,
+die sicherstellen sollen, dass die Sprache optimal für den konkreten Anwendungsfall verwendet werden kann.
+Diese Kriterien sind eingeteilt in “Muss”- und “Kann”-Kriterien.
+Folgende Kriterien müssen erfüllt werden:
+\begin{itemize}
+    \item \textbf{Objektorientierung} Die Sprache muss es ermöglichen, objektorientiert zu programmieren
+    \item \textbf{REST-fähig} Die Sprache muss es ermöglichen, dem Kundensystem BachelorChecker eine REST-Schnittstelle bereitzustellen
+    \item \textbf{Testfähigkeit} Die Sprache muss es ermöglichen, das System systematisch ohne großen Mehraufwand zu testen
+\end{itemize}
+
+Nachfolgende Kriterien hingegen sind optional, fließen aber
+positiv in den Entscheidungsprozess ein, falls diese erfüllt werden:
+\begin{itemize}
+    \item \textbf{Entwicklungsfähigkeit im Bereich KI} Die Sprache sollte es ermöglichen, eine KI zu entwickeln.
+    Dies ist insbesondere für mögliche Weiterentwicklungen des Systems hilfreich,
+    bei denen beispielsweise die KI zur Plagiatsprüfung selbst entwickelt werden soll.
+    \item \textbf{Generierung von Dokumentation} Die Sprache sollte es ermöglichen, Dokumentation für den Code
+    automatisch generieren zu lassen, um den manuellen Dokumentationsaufwand gering zu halten.
+\end{itemize}
+Unter dem Aspekt der weiten Verbreitung der Programmiersprachen
+stechen vornehmlich die Sprachen Java, Python und JavaScript hervor.
+Laut einer Statistik von Statista sind dies weltweit die drei beliebtesten Programmiersprachen\autocite{programmiersprachen}.
+Somit ist der Aspekt der weiten Verbreitung bei allen gegeben.
+Auch der Aspekt der Kompatibilität mit den darunterliegenden Systemschichten ist gegeben.
+Die weiteren Kriterien zur Technologieentscheidung werden nachfolgend überprüft.
+
+\begin{table}[H]
+    \begin{tabularx}{\textwidth}{l|X|X|X}
+        ~                                      & \textbf{Java}                                                            & \textbf{Python}                                                                  & \textbf{JavaScript}                                                     \\ \hline
+        \textbf{Freie Verwendung}              & \cellcolor{red!30} Proprietär                                            & \cellcolor{green!30}Ja                                                           & \cellcolor{green!30}Ja                                                  \\ \hline
+        \textbf{Skalierbarkeit}                & \cellcolor{green!30}Hoch                                                 & \cellcolor{orange!30}Mittel                                                      & \cellcolor{green!30}Am Höchsten                                         \\ \hline
+        \textbf{Performance}                   & \cellcolor{green!30}Hoch                                                 & \cellcolor{green!30}Hoch                                                         & \cellcolor{red!30}Niedrig                                               \\ \hline
+        \textbf{Objektorientierung}            & \cellcolor{green!30}Ja                                                   & \cellcolor{green!30}Ja                                                           & \cellcolor{green!30}Ja                                                  \\ \hline
+        \textbf{REST-fähig}                    & \cellcolor{green!30}Ja, z.B.\ mit Spring                                 & \cellcolor{green!30}Ja, z.B.\ mit Flask & \cellcolor{green!30}Ja, z.B.\ mit node.js \\ \hline
+        \textbf{Testfähig}                     & \cellcolor{green!30}Ja                                                   & \cellcolor{green!30}Ja                                                           & \cellcolor{green!30}Ja                                                  \\ \hline
+        \textbf{Entwicklung einer KI}          & \cellcolor{orange!30}Ungewöhnlich, aber möglich mit z.B.\ Deeplearning4j & \cellcolor{green!30}Beliebteste Programmiersprache im Kontext von KI-Entwicklung & \cellcolor{orange!30}Ungewöhnlich, aber möglich mit z.B.\ TensorFlow.js \\ \hline
+        \textbf{Generierung der Dokumentation} & \cellcolor{green!30}Möglich mit z.B.\ JavaDoc & \cellcolor{green!30}Möglich mit z.B.\ Doxygen & \cellcolor{green!30}Möglich mit z.B.\ JSDoc \\
+    \end{tabularx}
+    \caption{Technologieentscheidung Programmiersprache}
+    \label{tab:technologieentscheidung-programmiersprache}
+\end{table}
+Die Punkte Freie Verwendung, Skalierbarkeit und Performance beziehen sich auf nachfolgende Quelle\autocite{nodejavapython}.
+
+Aus der abgebildeten Tabelle geht hervor, dass es sich bei Java um eine proprietäre Programmiersprache handelt.
+Somit ist der Aspekt der freien Verwendung nicht gegeben und Java scheidet für die Verwendung dieses Systems aus.
+
+Die Programmiersprachen Python und JavaScript erfüllen beide grundsätzlich die genannten Kriterien.
+Auch der Punkt Performance ist bei beiden Sprachen gegeben, da bei diesem System
+vor allem die chatbasierte KI die Performance des gesamten Systems beeinflusst.
+Aus langjähriger Erfahrung der Entwickler ist bekannt, dass die
+Performance von Python und JavaScript für die Entwicklung des Systems ausreichend ist,
+auch wenn Python in der Regel als etwas performanter gilt.
+Somit sind beide Sprachen grundsätzlich für die Entwicklung des Systems geeignet.
+Ausschlaggebend für die Entscheidung ist der Punkt der Entwicklungsfähigkeit einer KI.
+Da in zukünftigen Weiterentwicklungen des Systems auch die Option bestehen soll, eine KI zur Plagiatsprüfung selbst zu entwickeln,
+ist es wichtig, dass die Programmiersprache dies auch ermöglicht.
+Dementsprechend ist Python in diesem Anwendungsfall die bessere Wahl, da diese Programmiersprache
+die meistverwendete Programmiersprache für die Entwicklung von Künstlicher Intelligenz ist.
 
 \subsection{Bibliotheken}\label{subsec:bibliotheken}
+Der letzte Schritt bei der Auswahl der Technologien ist die Auswahl der Bibliotheken.
+Dabei ist es wichtig nur Bibliotheken zu verwenden, welche auch mit der zuvor ausgewählten Programmiersprache kompatibel sind.
+
+Weitergehend liegt bei der Auswahl der Bibliotheken der Fokus auf den kritischen
+Punkten des Systems, welche bereits am Anfang des Kapitels genannt wurden.
+
+\subsubsection{REST}\label{subsubsec:rest}
+Der erste kritische Punkt des Systems ist die REST-Schnittstelle zum Kundensystem.
+Laut einer Umfrage von Stack Overflow sind Django und Flask in diesem Kontext die beliebtesten
+Bibliotheken, um in Python Web Anwendungen umzusetzen\autocite{webframeworks}.
+Somit ist der Punkt der weiten Verbreitung bereits gegeben.
+
+In einer gegenüberstellung der beiden Frameworks ergibt sich, dass Flask eine einfachere
+Benutzung und mehr Flexibilität auszeichnet\autocite{flaskdjango}.
+Da Flexibilität und Skalierbarkeit wichtige Punkte in der Umsetzung des Systems darstellen,
+wurde sich letztendlich für Flask entschieden.
+Auch die schnelle Lernkurve hat dabei eine Rolle gespielt.
+So kann einfacher die Machbarkeit anhand eines Prototyps bewiesen werden.
+
+\subsubsection{Auslesen der PDF}\label{subsubsec:pdf}
+Der nächste kritische Punkt des Systemablaufs ist das Auslesen der PDF-Dateien.
+Hierzu soll eine Bibliothek verwendet werden, welche diese Funktionalitäten bereitstellen kann.
+Dabei wird die Annahme gemacht, dass die PDF-Dateien in einem maschinenlesbaren Format vom BachelorChecker bereitgestellt werden.
+
+Die Auswahl an Bibliotheken ist hierbei sehr umfassend.
+Die Wahl fiel letztendlich auf die Bibliothek pypdf.
+Diese Bibliothek ist einfach zu verstehen und erhält regelmäßig Updates.
+Somit ist auch hier die Langlebigkeit des Systems gewährleistet.
+
+\subsubsection{Schnittstelle zu chatbasierter KI}\label{subsubsec:ki}
+Der letzte kritische Punkt des Systems ist die Schnittstelle zu der chatbasierten KI.
+Hierbei ist es wichtig, dass die Bibliothek die Möglichkeit bietet, die KI über eine Schnittstelle anzusprechen.
+Da die KI in Python entwickelt werden soll, ist es wichtig, dass die Bibliothek auch mit Python kompatibel ist.
+
+\paragraph{Das LargeLanguageModel (chatbasierte KI)} auszuwählen ist nicht einfach,
+da es eine Vielzahl verschiedener Modelle und Anbieter gibt.
+Für die kommerzielle Nutzung ist es wichtig, dass das Modell auch kommerziell genutzt werden darf.
+Auch wie verbreitet das Modell ist, muss berücksichtigt werden.
+Die Auswahl beschränkt sich somit auf folgende Modelle
+
+\begin{table}[H]
+    \begin{tabularx}{\textwidth}{lll}
+        \toprule
+        \textbf{LM}  & \textbf{Initial Release} & \textbf{Developer} \\
+        \midrule
+        Bard         & 2023-03-21               & Google             \\
+        ChatGPT      & 2022-11-30               & OpenAI             \\
+        Claude       & 2023-03-14               & Anthropic          \\
+        Cohere       & 2021-11-15               & Cohere             \\
+        Jurassic     & 2021-08-11               & AI21               \\
+        Inflection-1 & 2023-06-22               & Inflection AI      \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Kommerzielle LLMs}\autocite{sapling.llmindex}
+    \label{tab:kommerzielle-llms}
+\end{table}
+
+Von diesen Modellen ist ChatGPT jenes, welches für die technische Machbarkeit genutzt wird.
+Es wurde ausgewählt, da OpenAI API-Keys für die Nutzung des Modells vergibt und mit geringem Aufwand und Kosten genutzt werden kann.
+Außerdem ist es das Modell, welches am weitesten verbreitet\autocite{statista.gpt} ist.
+% TODO Raussuchen warum GPT besser ist als andere Modelle
+
+\paragraph{Das openai Package} wird benutzt, um mit dem Modell zu interagieren.
+Es wurde ausgewählt, da es einfach zu benutzen ist.
+Zudem wird es von OpenAI selbst entwickelt und ist somit immer auf dem neuesten Stand.
+
+% TODO Argumentation, dass wir in keine Timeouts laufen --> deswegen keine Alternative in ursprünglicher OOA
+
+\subsection{Alternative zur Übergabe der Antwort}\label{subsec:alternative-zur-uebergabe-der-antwort}
+Wie aus dem vorherigen Abschnitt hervorgeht, ist für unser System eine Alternative zur Übergabe der Antwort
+an den BachelorChecker nicht notwendig.
+Sollte das auftraggebende Unternehmen allerdings in Zukunft ein anderes KI-System verwenden wollen (z.B.\ ein selbst entwickeltes System),
+dann kann es auch passieren, dass die Antwort nicht innerhalb des HTTP-Timeouts zurückgegeben werden kann.
+
+In diesem Fall sollte eine Alternative zur Übergabe der Antwort an den BachelorChecker implementiert werden.
+Vorbereitend auf diesen Fall soll nachfolgend eine mögliche Alternative vorgestellt werden.
+Dabei wird auch darauf eingegangen, wie diese Alternative in das System integriert werden kann.
+
+Hierbei ist es üblich, nach dem Timeout den Statuscode 202 zurückzugeben.
+Dieser bedeutet, dass die Anfrage akzeptiert wurde, aber noch nicht bearbeitet werden konnte\autocite{mozilla}.
+Bei dieser Antwort wird dem BachelorChecker die ID inklusive der Webadresse des Auftrags mitgegeben,
+welche dieser dann in regelmäßigen Abständen abfragen kann, um den aktuellen Status des Auftrags zu erhalten.
+
+Sollte der Auftrag in der Zwischenzeit fertig werden, dann wird auf diese regelmäßigen Abfragen das Ergebnis
+der Plagiatsprüfung weitergegeben.
+
+% TODO Wie binden wir diese Funktion in unser System ein?
 
 
 \section{Machbarkeitsbeweis}\label{sec:machbarkeitsbeweis}
