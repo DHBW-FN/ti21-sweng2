@@ -9,12 +9,7 @@ Sind die Daten valide, werden diese ausgelesen und die daraus extrahierten Daten
 Zusätzlich wird in dem Prompt spezifiziert, dass die Ausgabe des Ergebnisses im \ac{JSON}-Format erfolgen soll.
 Das Prompt wird anschließend verwendet, um eine Anfrage an die chatbasierte \ac{KI} zu stellen.
 
-Die \ac{KI} verarbeitet die Anfrage, führt die Plagiatsprüfung anhand der übergebenen Daten und der Literaturdatenbanken durch und gibt das Ergebnis an \ac{AiPC} zurück.
+Die \ac{KI} verarbeitet die Anfrage, führt die Plagiatsprüfung anhand der übergebenen Daten durch und gibt das Ergebnis an \ac{AiPC} zurück.
 
 \ac{AiPC} überführt  das Ergebnis in ein \ac{JSON}-Objekt mit dem richtigen Output-Schema für die Antwort an den BachelorChecker.
 Die Antwort mit dem aufbereitetem Ergebnis wird an den BachelorChecker zurückgegeben und dort verarbeitet.
-
-Sollte die Plagiatsprüfung nicht schnell genug durchgeführt werden und damit die Antwortzeit einer \ac{HTTP}-Anfrage (Timeout) überschreiten,
-so wird dem Auftraggeber eine alternative Antwort zurückgegeben, die darauf hinweist, dass die Plagiatsprüfung noch nicht abgeschlossen ist.
-Der Auftraggeber erhält dabei außerdem eine Möglichkeit, den Status der Verarbeitung periodisch abzurufen.
-Ist die Plagiatsprüfung beendet, so steht das Ergebnis zur Verfügung und kann abgerufen werden.
