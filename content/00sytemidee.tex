@@ -2,11 +2,13 @@
 
 Im Rahmen der Erweiterung der existierenden Anwendung “BachelorChecker” soll anhand dieser \ac{OOA} das in Auftrag gegebene System \ac{AiPC} konzipiert werden.
 
+
 \section{Zielbestimmung}\label{sec:zielbestimmung}
 
 Die Integration dieser Erweiterung in die existierende Anwendung wird die Genauigkeit der Ergebnisse und damit die Trefferquote bei der Identifizierung von Plagiaten in Bachelorarbeiten durch künstliche Intelligenz erhöhen.
 Dabei soll es nicht nur möglich sein, exakt übereinstimmende Textpassagen zu identifizieren, sondern auch solche, die paraphrasiert wurden.
 Zudem kann durch die Erweiterung ein Wert, der den prozentualen Anteil der Übereinstimmung zwischen dem Text der Bachelorarbeit und dem der Quelle angibt, berechnet werden.
+
 
 \section{Konzept}\label{sec:konzept}
 
@@ -19,6 +21,7 @@ Das Ergebnis dieser Überprüfung wird von der \ac{KI} in einem JSON-Format mit 
 Dort wird das resultierende \ac{JSON}-Objekt validiert und weiter aufbereitet, um dann dem BachelorChecker bereitgestellt zu werden.
 Falls die Plagiatsprüfung nicht innerhalb eines festgelegten Zeitraums abgeschlossen werden kann, wird dem Auftraggeber eine alternative Möglichkeit zur Übergabe gegeben.
 
+
 \section{Voraussetzungen an den BachelorChecker}\label{sec:voraussetzungen-an-den-bachelorchecker}
 
 Es wird erwartet, dass der BachelorChecker in der Lage ist, \ac{HTTP}-Anfragen an die Schnittstelle des \ac{AiPC} zu senden.
@@ -28,9 +31,10 @@ Des Weiteren soll der BachelorChecker in der Lage sein, die resultierenden \ac{H
 Zusätzlich wird erwartet, dass der Auftraggeber eine angemessene Infrastruktur bereitstellt, auf der die Softwarelösung \ac{AiPC} betrieben werden kann.
 Es ist ebenfalls erforderlich sicherzustellen, dass diese Infrastruktur in der Lage ist, effektiv mit der chatbasierten \ac{KI} zu kommunizieren.
 
+
 \section{Entwicklungsstufen}\label{sec:entwicklungsstufen}
 
-\subsection{Erste Entwicklungsstufe: MVP}
+\subsection{Erste Entwicklungsstufe: MVP}\label{subsec:erste-entwicklungsstufe:-mvp}
 
 Die erste Version des \ac{AiPC} soll ein \ac{MVP} darstellen.
 Dafür soll der Empfang und die Validierung der Daten, die Generierung eines Prompts sowie die Aufbereitung und anschließende Bereitstellung der Ergebnisse wie oben beschrieben umgesetzt werden.
@@ -50,38 +54,35 @@ In diesem Meilenstein soll die Aufbereitung und Bereitstellung der Ergebnisse im
 Dazu werden die von der \ac{KI} erhaltenen Ergebnisse validiert und aufbereitet.
 Anschließend werden die Ergebnisse an den BachelorChecker zurückgegeben.
 
-\subsection{Zweite Entwicklungsstufe: Erweiterung der Funktionalität}
-In einer zweiten Entwicklungsstufe kann eine Möglichkeit zur Stapelverarbeitung mehrerer Dateien gleichzeitig ergänzt werden. 
+\subsection{Zweite Entwicklungsstufe: Erweiterung der Funktionalität}\label{subsec:zweite-entwicklungsstufe:-erweiterung-der-funktionalitat}
+In einer zweiten Entwicklungsstufe kann eine Möglichkeit zur Stapelverarbeitung mehrerer Dateien gleichzeitig ergänzt werden.
 Außerdem kann Die \ac{JSON}-Ausgabedatei mit weiteren Informationen angereichert werden, um detailliertere Ergebnisse über die Übereinstimmungen zu erhalten.
 
-\subsection{Dritte Entwicklungsstufe: Erweiterung der KI}
+\subsection{Dritte Entwicklungsstufe: Erweiterung der KI}\label{subsec:dritte-entwicklungsstufe:-erweiterung-der-ki}
 In der dritten Entwicklungsstufe kann eine fortschrittlichere \ac{KI} und Mechanismen zur kontinuierlichen Aktualisierung der \ac{KI}-Modelle für genauere Plagiatsprüfungen integriert werden.
 Die verbesserte \ac{KI} soll außerdem in der Lage sein, \ac{KI} generierte Texte zu erkennen und zu kennzeichnen.
 Im Zuge dieser Erweiterung können auch weitere Sprachen für die Plagiatsprüfung unterstützt werden.
+
 
 \section{Kosten}\label{sec:kosten}
 
 Die Kosten für ein \ac{MVP} errechnen sich aus den Entwicklungskosten für das \ac{AiPC}-System.
 Das Entwickler-Team besteht aus vier professionellen Softwareentwicklern.
 
-\subsection{Kosten für die Entwicklung des AiPC}\label{subsec:kosten-für-die-entwicklung-des-aipc}
+\subsection{Kosten für die Entwicklung des AiPC}\label{subsec:kosten-fuer-die-entwicklung-des-aipc}
 
 Für die Entwicklung wird ein Stundensatz von 180€ berechnet. % Quelle: https://www.digital-experts.com/blog/softwareentwicklung-kosten-was-kostet-eine-individualsoftware
 Dabei sind sowohl der Gewinn als auch die anfallenden Steuern enthalten.
 Der Arbeitsaufwand wird auf etwa 240 Personentage geschätzt.
 Somit belaufen sich die Kosten für die Entwicklung von \ac{AiPC} auf 43.200€.
 
-\subsection{Kosten für die chatbasierte KI}\label{subsec:kosten-für-die-chatbasierte-ki}
+\subsection{Kosten für die chatbasierte KI}\label{subsec:kosten-fuer-die-chatbasierte-ki}
 
 % Ist das schon wieder eine Technologieentscheidung?
 
 \begin{table}[H]
     \begin{tabular}{lll}
-    Model              & Input                & Output               \\
-    gpt-3.5-turbo-1106 & \$0.0010 / 1K tokens & \$0.0020 / 1K tokens
+        Model              & Input                & Output               \\
+        gpt-3.5-turbo-1106 & \$0.0010 / 1K tokens & \$0.0020 / 1K tokens
     \end{tabular}
 \end{table}
-
-
-
-
