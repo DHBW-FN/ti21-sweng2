@@ -211,6 +211,40 @@ Diese Bibliothek ist einfach zu verstehen und erhält regelmäßig Updates.
 Somit ist auch hier die Langlebigkeit des Systems gewährleistet.
 
 \subsubsection{Schnittstelle zu chatbasierter KI}\label{subsubsec:ki}
+Der letzte kritische Punkt des Systems ist die Schnittstelle zu der chatbasierten KI.
+Hierbei ist es wichtig, dass die Bibliothek die Möglichkeit bietet, die KI über eine REST-Schnittstelle anzusprechen.
+Da die KI in Python entwickelt werden soll, ist es wichtig, dass die Bibliothek auch mit Python kompatibel ist.
+
+\paragraph{Das LargeLanguageModel (chatbasierte KI)} auszuwählen ist nicht einfach,
+da es eine Vielzahl verschiedener Modelle und Anbieter gibt.
+Für die kommerzielle Nutzung ist es wichtig, dass das Modell auch kommerziell genutzt werden darf.
+Auch wie verbreitet das Modell ist, muss berücksichtigt werden.
+Die Auswahl beschränkt sich somit auf folgende Modelle
+
+\begin{table}[H]
+    \begin{tabularx}{\textwidth}{lll}
+        \toprule
+        \textbf{LM}  & \textbf{Initial Release} & \textbf{Developer} \\
+        \midrule
+        Bard         & 2023-03-21               & Google             \\
+        ChatGPT      & 2022-11-30               & OpenAI             \\
+        Claude       & 2023-03-14               & Anthropic          \\
+        Cohere       & 2021-11-15               & Cohere             \\
+        Jurassic     & 2021-08-11               & AI21               \\
+        Inflection-1 & 2023-06-22               & Inflection AI      \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Kommerzielle LLMs}\autocite{sapling.llmindex}
+    \label{tab:kommerzielle-llms}
+\end{table}
+
+Von diesen Modellen ist ChatGPT jenes, welches für die technische Machbarkeit genutzt wird.
+Es wurde ausgewählt, da OpenAI API-Keys für die Nutzung des Modells vergibt und mit geringem Aufwand und Kosten genutzt werden kann.
+Außerdem ist es das Modell, welches am weitesten verbreitet ist.
+
+\paragraph{Das openai Package} wird benutzt, um mit dem Modell zu interagieren.
+Es wurde ausgewählt, da es eine einfache Möglichkeit bietet, mit dem Modell zu interagieren.
+Zudem wird es von OpenAI selbst entwickelt und ist somit immer auf dem neuesten Stand.
 
 \subsection{Alternative zur Übergabe der Antwort}\label{subsec:alternative-zur-uebergabe-der-antwort}
 Eine weitere wichtige Entscheidung ist die Art und Weise, wie die Antwort an den BachelorChecker übergeben wird,
@@ -222,7 +256,6 @@ welche dieser dann in regelmäßigen Abständen abfragen kann, um den aktuellen 
 
 Sollte der Auftrag in der Zwischenzeit fertig werden, dann wird auf diese regelmäßigen Abfragen das Ergebnis
 der Plagiatsprüfung weitergegeben.
-
 
 
 \section{Machbarkeitsbeweis}\label{sec:machbarkeitsbeweis}
