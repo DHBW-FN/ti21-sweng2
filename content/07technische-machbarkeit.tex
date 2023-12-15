@@ -275,3 +275,118 @@ der Plagiatsprüfung weitergegeben.
 
 
 \section{Machbarkeitsbeweis}\label{sec:machbarkeitsbeweis}
+
+Nachfolgend soll die technische Machbarkeit des Systems mit den ausgewählten Technologien bewiesen werden.
+Dabei werden die Geschäftsfälle aus dem Kapitel~\ref{ch:geschaftsfaelle} auf die Machbarkeit überprüft.
+Sollten alle Geschäftsfälle umsetzbar sein, dann ist auch das gesamte System machbar.
+
+Um dies zu beweisen, wird ein Prototyp erstellt, welcher diese Geschäftsfälle abdeckt.
+% TODO Prototyp in Anhang einfügen und hier referenzieren
+
+Strukturiert ist dieser Machbarkeitsbeweis nach den kritischen Punkten des Systems,
+welche bereits in Kapitel~\ref{ch:technische-machbarkeit} genannt wurden.
+
+\subsection{REST Schnittstelle}\label{subsec:rest-schnittstelle}
+Um die Geschäftsfälle ``Eingang der Daten vom BachelorChecker'' (\ref{tab:eingang-der-daten-vom-bachelorchecker})
+und ``Übergabe des Ergebnisses an den BachelorChecker'' (\ref{tab:ubergabe-des-ergebnisses-an-den-bachelorchecker})
+auf Machbarkeit zu überprüfen, enthält der Prototyp eine REST-Schnittstelle mit flask.
+
+In diesem Prototypen wird ein HTTP-Endpunkt unter der Wurzeladresse ``/'' bereitgestellt.
+Dieser Endpunkt nimmt eine HTTP-POST Anfrage entgegen und gibt eine Antwort an den Client zurück.
+
+Wenn dieser Endpunkt aufgerufen wird, dann werden die mitgegebenen PDF- und JSON-Dateien verarbeitet
+und letztendlich eine JSON-Datei mit dem Ergebnis der Plagiatsprüfung zurückgegeben.
+
+Somit sind die beiden genannten Geschäftsfälle mit der ausgewählten Technologie machbar.
+
+\subsection{Auslesen der Dateien}\label{subsec:auslesen-der-dateien}
+Der nächste Geschäftsfall ist das ``Auslesen der Bachelorarbeit und der Zusatzinformationen'' (\ref{tab:auslesen-der-bachelorarbeit-und-zusatzinformationen}).
+Wie in der Technologieentscheidung beschrieben, wird für das Auslesen der PDF-Datei die Bibliothek pypdf verwendet.
+
+Diese Funktionalität wurde wie folgt in den Prototypen integriert:
+\begin{lstlisting}[caption={Auslesen von PDF-Dateien},captionpos=b,label={lst:pypdf}, language=Python, breaklines=true]
+def parse(self, path: str) -> str:
+    """
+    Parse the text content of a PDF file.
+
+    :param path: The file path of the PDF file to parse.
+    :return: The parsed text content of the PDF file.
+    """
+    self.validate(path)
+    with open(path, 'rb') as file:
+        reader = pypdf.PdfReader(file)
+        text = ''
+        for _, page in enumerate(reader.pages):
+            text += page.extract_text()
+    return text
+\end{lstlisting}
+
+Ebenso wird die JSON-Datei mit den Zusatzinformationen ausgelesen.
+Hierbei wird das Schema der Datei validiert.
+Dieses Schema ist in Kapitel~\ref{ch:schnittstellen} beschrieben.
+
+Zusammenfassend lässt sich somit festhalten, dass auch dieser Geschäftsfall mit den ausgewählten Technologien machbar ist.
+
+\subsection{Schnittstelle zu chatbasierter KI}\label{subsec:schnittstelle-zu-chatbasierter-ki}
+Diese ausgelesenen Daten werden anschließend aufbereitet und ein Prompt für die chatbasierte KI wird erstellt.
+Dies erfüllt den Geschäftsfall ``Aufbereiten der Daten und Generierung eines Prompts für die KI'' (\ref{tab:aufbereiten-der-daten-und-generierung-eines-prompts-fur-die-ki}).
+
+Die Erstellung des Prompts erfolgt mit einer Methode, welche die Daten in ein String-Format umwandelt,
+welches von der KI verarbeitet werden kann.
+\begin{lstlisting}[caption={Erstellung eines Prompts für die KI},captionpos=b,label={lst:prompt-erstellen}, language=Python, breaklines=true]
+def generate_setup_prompt(self, data) -> str:
+    """
+    Generates a setup prompt for the AI adapter based on the given data.
+    """
+    return (
+        f"Analyze the text for plagiarism. Author: {data['author']},"
+        f"Title: {data['title']}, Language code: {data['language']}."
+        f"Exclude sources with ISBNs: {data['sources']}."
+        f"The response should adhere to the following JSON schema: {self.schema}"
+        "Make sure all the keys have the correct value,"
+        "and guarantee that the required keys are always present."
+    )
+\end{lstlisting}
+
+Dieser Prompt wird zusammen mit dem Text der Bachelorarbeit im Rahmen des nächsten Geschäftsfalls
+``Weitergabe der Daten an KI'' (\ref{tab:weitergabe-der-daten-an-ki}) an die KI übergeben.
+Um dies umzusetzen wird die Klasse ``AIAdapter'' verwendet.
+Diese Klasse enthält eine Methode ``chat'', welche die Daten an die KI übermittelt und das Ergebnis zurückgibt.
+Die Implementierung ist nachfolgend zu sehen.
+\begin{lstlisting}[caption={Weitergabe der Daten an KI},captionpos=b,label={lst:weitergabe-an-ki}, language=Python, breaklines=true]
+def chat(self, messages: list[dict]):
+    """
+    Sends a list of messages to the OpenAI API and returns the response.
+
+    Args:
+    messages (list[dict]): A list of dictionaries each representing a message.
+
+    Returns:
+    json_data (dict): A dictionary containing the response from the OpenAI API.
+    """
+    completion = self.client.chat.completions.create(
+        model="gpt-3.5-turbo-1106",
+        response_format={"type": "json_object"},
+        messages=messages,
+    )
+    json_content = completion.choices[0].message.content
+    json_data = json.loads(json_content)
+    return json_data
+\end{lstlisting}
+
+Dabei wird auch spezifiziert, in welchem Format die Antwort der KI zurückgegeben werden soll.
+In diesem Fall wird das Format ``json\_object'' verwendet, um die Antwort möglichst einfach verarbeiten zu können.
+
+Dieser Ausschnitt des Prototypen zeigt auch, wie die Antwort der KI erhalten wird.
+Zusätzlich dazu wird das Schema dieser Antwort noch validiert und ein ``PlagiarismCheckResult''
+Objekt zur internen Datenhaltung des Ergebnisses erstellt.
+Somit ist auch der Geschäftsfall ``Erhalt des Ergebnisses der KI'' (\ref{tab:erhalt-des-ergebnisses-der-ki}) durch den Prototypen abgedeckt.
+
+Zuletzt folgt noch der Geschäftsfall ``Weiterverarbeitung des Ergebnisses der KI'' (\ref{tab:weiterverarbeitung-des-ergebnisses-der-ki}).
+Hierbei wird aus dem internen ``PlagiarismCheckResult'' Objekt eine JSON-Datei erstellt.
+Dies erfolgt in der Klasse ``ResponseService'' mit der Methode:
+
+\texttt{get\_json\_from\_plagiarism\_check\_result(self, data: PlagiarismCheckResult)}.
+
+Diese Methode bringt das Ergebnis in das Format, welches in Kapitel~\ref{ch:schnittstellen} beschrieben ist.
+Durch die Umsetzung im Prototypen ist somit bewiesen, dass die zuvor genannten Geschäftsfälle machbar sind.
