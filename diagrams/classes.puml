@@ -7,12 +7,14 @@ class PlagiarismCheckResult {
     +addSource(PlagiarismSource)
     +getCoverage(): float
     +getPlagiarismLength(): int
+    {static} fromJson(String): PlagiarismCheckResult
 }
 
 class PlagiarismSource extends Source {
     List<PlagiarismOccurrence> occurrences
     +addOccurrence(PlagiarismOccurrence)
     +getPlagiarismLength(): int
+    {static} fromJson(String): PlagiarismCheckResult
 }
 
 class PlagiarismOccurrence {
@@ -20,10 +22,12 @@ class PlagiarismOccurrence {
     int end
     float certainty
     +getPlagiarismLength(): int
+    {static} fromJson(String): PlagiarismCheckResult
 }
 
 class Author {
     String name
+    {static} fromJson(String): PlagiarismCheckResult
 }
 
 class Source {
@@ -33,20 +37,21 @@ class Source {
 }
 
 abstract class Parser {
-    +validate(File)
-    +parse(File)
+    {abstract} +parse(File): String
+    +validate(File): boolean
 }
 
 class PdfParser extends Parser {
-    +validate(File)
-    +parse(File)
+    String directory
+    +validate(File): boolean
+    +parse(File): String
 }
 
 class JsonParser extends Parser {
     Schema schema
-    +validate(File)
-    +parse(File)
-    +validateSchema(Schema)
+    +validate(File): boolean
+    +parse(File): String
+    +validateSchema(Schema): boolean
 }
 
 class Controller {
@@ -65,10 +70,11 @@ class AiController {
 class AiService {
     AiAdapter aiAdapter
     +check(String, String): PlagiarismCheckResult
-    -generate_setup_prompt(String): String
+    -generateSetupPrompt(String): String
 }
 
 class AiAdapter {
+    client
     +chat(String): String
 }
 
