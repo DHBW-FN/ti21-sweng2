@@ -180,3 +180,97 @@ Erklärung der Attribute:
     \end{tabularx}
     \caption {Schnittstelle zu KI}
 \end{table}
+
+\subsection*{Aufbau der erwarteten Antwort von der KI}\label{subsec:ki-antwort}
+\begin{lstlisting}[caption={Erwartetes Format der KI-Antwort},captionpos=b,label={lst:ki-antwort}, language=json]
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "author",
+    "summary",
+    "sources"
+  ],
+  "properties": {
+    "author": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "summary": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "isbn",
+          "title",
+          "author",
+          "occurrences"
+        ],
+        "properties": {
+          "isbn": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "occurrences": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "start",
+                "end",
+                "certainty"
+              ],
+              "properties": {
+                "start": {
+                  "type": "integer"
+                },
+                "end": {
+                  "type": "integer"
+                },
+                "certainty": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+\end{lstlisting}
+
+Erklärung der Attribute:
+\begin{itemize}
+    \item author: Name des Autors der Bachelorarbeit
+    \item summary: Zusammenfassung des Ergebnisses
+    \item sources: Liste mit Quellen die als Plagiat erkannt wurden
+    \begin{itemize}
+        \item isbn: ISBN Nummer der Quelle
+        \item title: Titel der Quelle
+        \item author: Autor der Quelle
+        \item occurrences: Liste mit Fundstellen von Plagiaten aus dieser Quelle
+        \begin{itemize}
+            \item start: Startposition des Plagiats in der Bachelorarbeit
+            \item end: Endposition des Plagiats in der Bachelorarbeit
+            \item certainty: Sicherheit mit der das Plagiat erkannt wurde
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
