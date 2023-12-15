@@ -1,0 +1,118 @@
+@startuml Klassendiagramm_HTTP_202
+class PlagiarismCheckResult {
+    Author author
+    String thesisText
+    String summary
+    List<PlagiarismSource> sources
+    +addSource(PlagiarismSource)
+    +getCoverage(): float
+    +getPlagiarismLength(): int
+    {static} fromJson(String): PlagiarismCheckResult
+}
+
+class PlagiarismSource extends Source {
+    List<PlagiarismOccurrence> occurrences
+    +addOccurrence(PlagiarismOccurrence)
+    +getPlagiarismLength(): int
+    {static} fromJson(String): PlagiarismSource
+}
+
+class PlagiarismOccurrence {
+    int start
+    int end
+    float certainty
+    +getPlagiarismLength(): int
+    {static} fromJson(String): PlagiarismOccurrence
+}
+
+class Author {
+    String name
+    {static} fromJson(String): Author
+}
+
+class Source {
+    String isbn
+    String title
+    Author author
+}
+
+abstract class Parser {
+    {abstract} +parse(File): String
+    +validate(File): boolean
+}
+
+class PdfParser extends Parser {
+    +validate(File): boolean
+    +parse(File): String
+}
+
+class JsonParser extends Parser {
+    Schema schema
+    +validate(File): boolean
+    +parse(File): String
+    +validateSchema(Schema): boolean
+}
+
+class Controller {
+    PdfParser pdfParser
+    JsonParser jsonParser
+    AiController aiController
+    ResponseController responseController
+    +check(String, String): String
+    +checkRequestStatus(String): String
+}
+
+class AiController {
+    AiService aiService
+    +check(String, String): PlagiarismCheckResult
+}
+
+class AiService {
+    AiAdapter aiAdapter
+    +check(String, String): PlagiarismCheckResult
+    -generateSetupPrompt(String): String
+}
+
+class AiAdapter {
+    Object client
+    +chat(String): String
+}
+
+class ResponseController {
+    Schema schema
+    ResponseService responseService
+    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): String
+    +addRequest(String, PlagiarismCheckResult)
+    +checkRequestStatus(String): String
+}
+
+class ResponseService {
+    Schema schema
+    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): String
+}
+
+class Request {
+    String uuid
+    PlagiarismCheckResult result
+}
+
+Controller "1" o-- "1" PdfParser
+Controller "1" o-- "1" JsonParser
+Controller "1" o-- "1" AiController
+AiController "1" o-- "1" AiService
+AiService "1" o-- "1" AiAdapter
+Controller "1" o-- "1" ResponseController
+ResponseController "1" o-- "1" ResponseService
+ResponseController "1" o-- "*" Request
+ResponseService "1" o-- "1" JsonParser
+
+PlagiarismCheckResult -- AiController
+PlagiarismCheckResult -- AiService
+PlagiarismCheckResult -- ResponseService
+
+PlagiarismCheckResult "1" o-- "*" PlagiarismSource
+PlagiarismCheckResult "1" o-- "1" Author
+PlagiarismSource "1" o-- "1..*" PlagiarismOccurrence
+PlagiarismSource "1" o-- "1" Author
+PlagiarismCheckResult "1" o-- "1" Request
+@enduml
