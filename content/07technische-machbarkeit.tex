@@ -243,7 +243,8 @@ Die Auswahl beschränkt sich somit auf folgende Modelle
 \end{table}
 
 
-Unter den betrachteten Modellen wird ChatGPT für die technische Machbarkeit ausgewählt.
+
+Unter den betrachteten Modellen wird ChatGPT mit GPT-3 für die technische Machbarkeit und den Prototyp ausgewählt.
 Die Entscheidung für dieses Modell basiert auf der Vergabe von OpenAI-API-Keys, was eine kostengünstige und wenig aufwändige Nutzung ermöglicht.
 Zudem zeichnet sich ChatGPT durch seine weite Verbreitung aus, wie aus aktuellen Statistiken hervorgeht \autocite{statista.gpt}.
 
@@ -252,7 +253,15 @@ Damit ist es das umfangreichste Modell unter den genannten Alternativen \autocit
 Die Trainingsdaten für dieses Modell belaufen sich auf 45 Terabyte komprimierten Texts, was es zu einem der intensivsten und am besten trainierten Modelle in dieser Auswahl macht \autocite[][S. 8]{openai.gpt}.
 Obwohl GPT-3 im Vergleich zu anderen Modellen eine gewisse Geschwindigkeitseinbuße aufweist, zeichnet es sich durch qualitativ überlegene Ergebnisse aus \autocite{mindsdb.llm}.
 
-Für die Interaktion mit dem Modell kommt das \textit{openai package} zum Einsatz.
+Für einen produktiven Einsatz empfiehlt der Auftragnehmer GPT-4 zu verwenden.
+Dieses Modell zeichnet sich durch eine erhöhte Verarbeitungsgeschwindigkeit und eine gesteigerte Ergebnisqualität aus.
+Darüber hinaus unterstützt es eine größere Anzahl an Token \autocite{openai.gpt4}, was zu einer erweiterten Fähigkeit führt, auch umfangreichere Texte zu verarbeiten.
+Diese Eigenschaft erweist sich als besonders vorteilhaft bei der Verarbeitung von Bachelorarbeiten.
+Ein weiterer Vorteil von GPT-4 liegt in seinem Training mit aktualisierten und umfangreicheren Datensätzen.
+Dies trägt dazu bei, die Qualität der erzeugten Ergebnisse weiter zu steigern.
+Außerdem bietet dieses Modell einen \ac{JSON}-Mode, welcher die Benutzung von \ac{JSON}-Strukturen erleichtert.
+
+Für die Interaktion mit dem Modell kommt das \texttt{openai package} zum Einsatz.
 Diese Entscheidung basiert auf der Benutzerfreundlichkeit des Pakets sowie auf der Gewissheit,
 dass es kontinuierlich von OpenAI selbst weiterentwickelt wird und somit stets auf dem aktuellen Stand ist.
 
