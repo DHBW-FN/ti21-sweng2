@@ -281,9 +281,11 @@ Eine Integration dieser Funktion in den \ac{AiPC} könnte wie folgt aussehen:
 \end{figure}
 
 Die Anfragen an den \ac{AiPC} werden hierbei nach wie vor über den selben Endpunkt gestellt.
-Allerdings erhält der BachelorChecker hierbei sofort eine Antwort mit dem HTTP-Statuscode 202 und einer UUID.
-Diese UUID wird intern verwendet um die verschiedenen Anfragen eindeutig zu identifizieren, welche durch die neue Request-Klasse repräsentiert werden.
-Außerdem kann der BachelorChecker diese UUID verwenden, um in regelmäßigen Abständen über einen neuen, zweiten Endpunkt den Status des Auftrags abzufragen.
-
+Allerdings erhält der BachelorChecker hierbei sofort eine Antwort mit dem HTTP-Statuscode 202 und einer URL.
+Mithilfe dieser URL kann der BachelorChecker in regelmäßigen Abständen den Status der Anfrage abfragen.
+Hierzu wird ein zweiter Endpunkt in dem \ac{AiPC} hinzugefügt.
+Intern wird je eine Anfrage durch eine Instanz der neu hinzugefügten Request-Klasse repräsentiert.
+Dabei wird jede Instanz eindeutig durch eine, während der Plagiatsprüfungsanfrage generierten, UUID identifiziert.
+Diese UUID dient außerdem der Verwaltung der einzelnen Instanzen durch den ResponseController.
 
 \section{Machbarkeitsbeweis}\label{sec:machbarkeitsbeweis}
