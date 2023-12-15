@@ -42,7 +42,6 @@ abstract class Parser {
 }
 
 class PdfParser extends Parser {
-    String directory
     +validate(File): boolean
     +parse(File): String
 }
