@@ -70,21 +70,73 @@ Im Zuge dieser Erweiterung können auch weitere Sprachen für die Plagiatsprüfu
 
 Die Kosten für ein \ac{MVP} errechnen sich aus den Entwicklungskosten für das \ac{AiPC}-System.
 Das Entwickler-Team besteht aus vier professionellen Softwareentwicklern.
+Für diese wird ein Stundensatz von 150\euro{} berechnet.
+Die anfallenden Steuern sind dabei bereits enthalten.
 
 \subsection{Kosten für die Entwicklung des AiPC}\label{subsec:kosten-fuer-die-entwicklung-des-aipc}
-
-Für die Entwicklung wird ein Stundensatz von 180€ berechnet. % Quelle: https://www.digital-experts.com/blog/softwareentwicklung-kosten-was-kostet-eine-individualsoftware
-Dabei sind sowohl der Gewinn als auch die anfallenden Steuern enthalten.
-Der Arbeitsaufwand wird auf etwa 240 Personentage geschätzt.
-Somit belaufen sich die Kosten für die Entwicklung von \ac{AiPC} auf 43.200€.
-
-\subsection{Kosten für die chatbasierte KI}\label{subsec:kosten-fuer-die-chatbasierte-ki}
-
-% Ist das schon wieder eine Technologieentscheidung?
+\begin{table}[H]
+    \begin{tabularx}{\textwidth}{XXXX}
+        \toprule
+        \textbf{Posten} & \textbf{Anzahl} & \textbf{Kosten pro Einheit in €} & \textbf{Kosten gesamt in €} \\
+        \midrule
+        Meilenstein 1 & 250 & 150 & 37,500 \\
+        Meilenstein 2 & 150 & 150 & 22,500 \\
+        Meilenstein 3 & 200 & 150 & 30,000 \\
+        Installation & 32 & 150 & 4,800 \\
+        \bottomrule
+        Total & 632 & 150 & 94,800 \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Kostenschätzung}
+    \label{tab:kosten}
+\end{table}
 
 \begin{table}[H]
-    \begin{tabular}{lll}
-        Model              & Input                & Output               \\
-        gpt-3.5-turbo-1106 & \$0.0010 / 1K tokens & \$0.0020 / 1K tokens
-    \end{tabular}
+    \begin{tabularx}{\textwidth}{XXXX}
+        \toprule
+        \textbf{Posten} & \textbf{Anzahl} & \textbf{Kosten pro Einheit in €} & \textbf{Kosten gesamt in €} \\
+        \midrule
+        Total           & 150             & 150                              & 22,500                      \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Kostenschätzung Timeout}
+    \label{tab:kosten-timeout}
 \end{table}
+
+\begin{table}[H]
+    \begin{tabularx}{\textwidth}{XXXXXX}
+        \toprule
+        \textbf{Modell}      & \textbf{Preis Input pro 1k Tokens} & \textbf{Preis Output pro 1k Tokens} & \textbf{Input Tokens} & \textbf{Output Tokens}& \textbf{Kosten gesamt in €} \\
+        \midrule
+        Gute chatbasierte KI & 0.01                               & 0.03                                & 42,000                & 3,000                  & 0.51                        \\
+        Chatbasierte KI      & 0.001                              & 0.002                               & 42,000                & 3,000                  & 0.048                       \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Laufende Kosten}
+    \label{tab:kosten-laufend}
+\end{table}
+
+Der Arbeitsaufwand für die Entwicklung des \ac{MVP} wird auf etwa 600 Stunden geschätzt.
+Dieser lässt sich in die einzelnen Meilensteine unterteilen.
+Für die Schnittstellenimplementierung werden 250 Arbeitsstunden eingeplant.
+Die Validierung der Daten und anschließende Generierung des Prompt benötigen etwa 150 Stunden.
+Zur Aufbereitung und anschließender Bereitstellung des Ergebnisses werden 200 Stunden veranschlagt.
+Somit belaufen sich die Gesamtkosten für die Entwicklung von \ac{AiPC} auf 90,000\euro{} (neunzigtausend).
+
+Es besteht die Möglichkeit, zusätzliche Unterstützung bei der Installation des Systems zu beauftragen.
+Hierdurch entsteht ein Arbeitsaufwand von etwa 4 Personentagen.
+Eine unterstützende Implementation und Integration in den Kundensystemen kostet somit 4,800\euro{} (viertausendachthundert).
+Die Kosten für die Entwicklung und Installation belaufen sich somit auf 94,800\euro{} (vierundneunzigtausendachthundert).
+Dies ist die vom Auftragnehmer empfohlene Angebotsvariante.
+
+Eine alternative Möglichkeit zur Übergabe bei eintretendem HTTP-Timeout kann auf Wunsch zusätzlich beauftragt werden.
+Für die Entwicklung dieser Funktionalität werden zusätzlich 150 Stunden angesetzt.
+Somit belaufen sich die Kosten hierfür auf 22,500\euro{} (zweiundzwanzigtausendfünfhundert).
+
+Die Gesamtkosten von \ac{AiPC} inklusive Unterstützung bei der Installation und Implementierung der HTTP-Timeout-Alternative betragen somit 117,300\euro{} (einhundertsiebzehntausenddreihundert).
+
+Für die Nutzung der chatbasierten \ac{KI} fallen außerdem laufende Kosten an.
+Diese können je nach verwendetem \ac{KI}-Modell variieren.
+Marktforschungen haben ergeben, dass ein durchschnittlicher Preis von 0.01\euro{} pro 1.000 Input-Tokens und 0.03\euro{} pro 1,000 Output-Tokens anfällt.
+Geht man von einer Bachelorarbeit mit 100 Seiten aus, welche im Durchschnitt 42,000 Tokens enthält, und einer generierten Antwort im Umfang von 3,000 Tokens beläuft sich der Preis pro Bachelorarbeit auf 0.51\euro{}.
+Muss die Plagiatsprüfung nicht zwingend von höchster Qualität sein, so kann auch auf ein günstigeres Modell mit 0.001\euro{} pro 1,000 Input-Tokens und 0.002\euro{} pro 1,000 Output-Tokens zurückgegriffen werden.
