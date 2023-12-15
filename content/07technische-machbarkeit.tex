@@ -52,7 +52,7 @@ Verwendung der Technologie nicht eingeschränkt werden soll.
 
 \paragraph{Weite Verbreitung (Entwickler, Unternehmen, Markt, Zeit)}\label{par:weite-verbreitung}
 Eine weite Verbreitung der verwendeten Technologien muss gegeben sein.
-Dies bedeutet, dass es marktüblich sein sollte, diese Technologie für den
+Dies bedeutet, dass es marktüblich sein soll , diese Technologie für den
 konkreten Anwendungsfall in unserem System zu verwenden.
 
 Ableiten lässt sich dieses Kriterium aus den Faktoren Entwickler, Unternehmen, Markt und Zeit.
@@ -242,14 +242,19 @@ Die Auswahl beschränkt sich somit auf folgende Modelle
     \label{tab:kommerzielle-llms}
 \end{table}
 
-Von diesen Modellen ist ChatGPT jenes, welches für die technische Machbarkeit genutzt wird.
-Es wurde ausgewählt, da OpenAI API-Keys für die Nutzung des Modells vergibt und mit geringem Aufwand und Kosten genutzt werden kann.
-Außerdem ist es das Modell, welches am weitesten verbreitet\autocite{statista.gpt} ist.
-% TODO Raussuchen warum GPT besser ist als andere Modelle
 
-\paragraph{Das openai Package} wird benutzt, um mit dem Modell zu interagieren.
-Es wurde ausgewählt, da es einfach zu benutzen ist.
-Zudem wird es von OpenAI selbst entwickelt und ist somit immer auf dem neuesten Stand.
+Unter den betrachteten Modellen wird ChatGPT für die technische Machbarkeit ausgewählt.
+Die Entscheidung für dieses Modell basiert auf der Vergabe von OpenAI-API-Keys, was eine kostengünstige und wenig aufwändige Nutzung ermöglicht.
+Zudem zeichnet sich ChatGPT durch seine weite Verbreitung aus, wie aus aktuellen Statistiken hervorgeht \autocite{statista.gpt}.
+
+ChatGPT ist eine Ableitung des Large Language Models (LLM) GPT-3 von OpenAI, welches 175 Milliarden Parameter umfasst \autocite[][S. 5]{openai.gpt}.
+Damit ist es das umfangreichste Modell unter den genannten Alternativen \autocite{statista.gpt}.
+Die Trainingsdaten für dieses Modell belaufen sich auf 45 Terabyte komprimierten Texts, was es zu einem der intensivsten und am besten trainierten Modelle in dieser Auswahl macht \autocite[][S. 8]{openai.gpt}.
+Obwohl GPT-3 im Vergleich zu anderen Modellen eine gewisse Geschwindigkeitseinbuße aufweist, zeichnet es sich durch qualitativ überlegene Ergebnisse aus \autocite{mindsdb.llm}.
+
+Für die Interaktion mit dem Modell kommt das \textit{openai package} zum Einsatz.
+Diese Entscheidung basiert auf der Benutzerfreundlichkeit des Pakets sowie auf der Gewissheit,
+dass es kontinuierlich von OpenAI selbst weiterentwickelt wird und somit stets auf dem aktuellen Stand ist.
 
 % TODO Argumentation, dass wir in keine Timeouts laufen --> deswegen keine Alternative in ursprünglicher OOA
 
