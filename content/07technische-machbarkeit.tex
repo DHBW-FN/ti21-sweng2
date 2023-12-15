@@ -251,15 +251,23 @@ Zudem zeichnet sich ChatGPT durch seine weite Verbreitung aus, wie aus aktuellen
 ChatGPT ist eine Ableitung des Large Language Models (LLM) GPT-3 von OpenAI, welches 175 Milliarden Parameter umfasst~\autocite[][S. 5]{openai.gpt}.
 Damit ist es das umfangreichste Modell unter den genannten Alternativen~\autocite{statista.gpt}.
 Die Trainingsdaten für dieses Modell belaufen sich auf 45 Terabyte komprimierten Texts, was es zu einem der intensivsten und am besten trainierten Modelle in dieser Auswahl macht~\autocite[][S. 8]{openai.gpt}.
-Obwohl GPT-3 im Vergleich zu anderen Modellen eine gewisse Geschwindigkeitseinbuße aufweist, zeichnet es sich durch qualitativ überlegene Ergebnisse aus~\autocite{mindsdb.llm}.
+Obwohl GPT-3 im Vergleich zu anderen Modellen eine gewisse Geschwindigkeitseinbuße aufweist, zeichnet es sich durch qualitativ bessere Ergebnisse aus~\autocite{mindsdb.llm}.
+Jedoch sind die Antwortzeiten von GPT-3 so marginal, dass diese kein Problem für die Nutzung in diesem System darstellen.
+Diese liegen bei der Generierung von 512 Token etwa zwischen 10 und 15 Sekunden~\autocite{gptforwork.gpt3}.
+Durch intensives Testen konnte ebenfalls festgestellt werden, dass die Antwortzeiten schnell genug sind, um nicht in einen HTTP-Timeout zu laufen.
 
-Für einen produktiven Einsatz empfiehlt der Auftragnehmer GPT-4 zu verwenden.
+Für einen produktiven Einsatz empfiehlt der Auftragnehmer GPT-4 Turbo zu verwenden.
 Dieses Modell zeichnet sich durch eine erhöhte Verarbeitungsgeschwindigkeit und eine gesteigerte Ergebnisqualität aus.
-Darüber hinaus unterstützt es eine größere Anzahl an Token~\autocite{openai.gpt4}, was zu einer erweiterten Fähigkeit führt, auch umfangreichere Texte zu verarbeiten.
+Darüber hinaus unterstützt es eine größere Anzahl an Token~\autocite{openai.gpt4}, dadurch können auch umfangreichere Texte verarbeitet werden.
 Diese Eigenschaft erweist sich als besonders vorteilhaft bei der Verarbeitung von Bachelorarbeiten.
+Die Anzahl der maximalen Token beträgt 128.000~\autocite{openai.gpt4}.
+Das entspricht über 300 Seiten Text~\autocite{openai.blog.gpt4}.
 Ein weiterer Vorteil von GPT-4 liegt in seinem Training mit aktualisierten und umfangreicheren Datensätzen.
 Dies trägt dazu bei, die Qualität der erzeugten Ergebnisse weiter zu steigern.
-Außerdem bietet dieses Modell einen \ac{JSON}-Mode, welcher die Benutzung von \ac{JSON}-Strukturen erleichtert.
+Außerdem bietet dieses Modell einen \ac{JSON}-Mode, welcher die Benutzung von \ac{JSON}-Strukturen erleichtert~\autocite{openai.gpt4}.
+Die Antwortzeiten betragen bei GPT-4 Turbo 8--16 Sekunden~\autocite{nuvalence.gpt4}.
+Dabei ist die Antwortzeit unabhängig von der Größe des übergebenen Textes~\autocite{nuvalence.gpt4}.
+In Verbindung mit dem KI-System besteht für das Gesamtsystem somit keine Gefahr,in ein HTTP-Timeout zu laufen
 
 Für die Interaktion mit dem Modell kommt das \texttt{openai package} zum Einsatz.
 Diese Entscheidung basiert auf der Benutzerfreundlichkeit des Pakets sowie auf der Gewissheit,
