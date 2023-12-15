@@ -273,11 +273,12 @@ der Plagiatsprüfung weitergegeben.
 
 % TODO Wie binden wir diese Funktion in unser System ein?
 
+
 \section{Machbarkeitsbeweis}\label{sec:machbarkeitsbeweis}
 
 Nachfolgend soll die technische Machbarkeit des Systems mit den ausgewählten Technologien bewiesen werden.
 Dabei werden die Geschäftsfälle aus dem Kapitel~\ref{ch:geschaftsfaelle} auf die Machbarkeit überprüft.
-Sollten alle Geschäftsfälle machbar sein, dann ist auch das gesamte System machbar.
+Sollten alle Geschäftsfälle umsetzbar sein, dann ist auch das gesamte System machbar.
 
 Um dies zu beweisen, wird ein Prototyp erstellt, welcher diese Geschäftsfälle abdeckt.
 % TODO Prototyp in Anhang einfügen und hier referenzieren
@@ -286,7 +287,7 @@ Strukturiert ist dieser Machbarkeitsbeweis nach den kritischen Punkten des Syste
 welche bereits in Kapitel~\ref{ch:technische-machbarkeit} genannt wurden.
 
 \subsection{REST Schnittstelle}\label{subsec:rest-schnittstelle}
-Um die Geschäftsfälle ``Eingang der Daten vom BachelorChecker'' (\ref{tab:eingang-der-daten-vom-bachelorchecker}) 
+Um die Geschäftsfälle ``Eingang der Daten vom BachelorChecker'' (\ref{tab:eingang-der-daten-vom-bachelorchecker})
 und ``Übergabe des Ergebnisses an den BachelorChecker'' (\ref{tab:ubergabe-des-ergebnisses-an-den-bachelorchecker})
 auf Machbarkeit zu überprüfen, enthält der Prototyp eine REST-Schnittstelle mit flask.
 
@@ -303,7 +304,7 @@ Der nächste Geschäftsfall ist das ``Auslesen der Bachelorarbeit und der Zusatz
 Wie in der Technologieentscheidung beschrieben, wird für das Auslesen der PDF-Datei die Bibliothek pypdf verwendet.
 
 Diese Funktionalität wurde wie folgt in den Prototypen integriert:
-\begin{lstlisting}[caption={Auslesen von PDF-Dateien},captionpos=b,label={lst:pypdf}, language=Python]
+\begin{lstlisting}[caption={Auslesen von PDF-Dateien},captionpos=b,label={lst:pypdf}, language=Python, breaklines=true]
 def parse(self, path: str) -> str:
     """
     Parse the text content of a PDF file.
@@ -332,7 +333,7 @@ Dies erfüllt den Geschäftsfall ``Aufbereiten der Daten und Generierung eines P
 
 Die Erstellung des Prompts erfolgt mit einer Methode, welche die Daten in ein String-Format umwandelt,
 welches von der KI verarbeitet werden kann.
-\begin{lstlisting}[caption={Erstellung eines Prompts für die KI},captionpos=b,label={lst:prompt-erstellen}, language=Python]
+\begin{lstlisting}[caption={Erstellung eines Prompts für die KI},captionpos=b,label={lst:prompt-erstellen}, language=Python, breaklines=true]
 def generate_setup_prompt(self, data) -> str:
     """
     Generates a setup prompt for the AI adapter based on the given data.
@@ -352,7 +353,7 @@ Dieser Prompt wird zusammen mit dem Text der Bachelorarbeit im Rahmen des nächs
 Um dies umzusetzen wird die Klasse ``AIAdapter'' verwendet.
 Diese Klasse enthält eine Methode ``chat'', welche die Daten an die KI übermittelt und das Ergebnis zurückgibt.
 Die Implementierung ist nachfolgend zu sehen.
-\begin{lstlisting}[caption={Weitergabe der Daten an KI},captionpos=b,label={lst:weitergabe-an-ki}, language=Python]
+\begin{lstlisting}[caption={Weitergabe der Daten an KI},captionpos=b,label={lst:weitergabe-an-ki}, language=Python, breaklines=true]
 def chat(self, messages: list[dict]):
     """
     Sends a list of messages to the OpenAI API and returns the response.
@@ -383,6 +384,9 @@ Somit ist auch der Geschäftsfall ``Erhalt des Ergebnisses der KI'' (\ref{tab:er
 
 Zuletzt folgt noch der Geschäftsfall ``Weiterverarbeitung des Ergebnisses der KI'' (\ref{tab:weiterverarbeitung-des-ergebnisses-der-ki}).
 Hierbei wird aus dem internen ``PlagiarismCheckResult'' Objekt eine JSON-Datei erstellt.
-Dies erfolgt in der Klasse ``ResponseService'' mit der Methode ``get\_json\_from\_plagiarism\_check\_result(self, data: PlagiarismCheckResult)''.
+Dies erfolgt in der Klasse ``ResponseService'' mit der Methode:
+
+\texttt{get\_json\_from\_plagiarism\_check\_result(self, data: PlagiarismCheckResult)}.
 
 Diese Methode bringt das Ergebnis in das Format, welches in Kapitel~\ref{ch:schnittstellen} beschrieben ist.
+Durch die Umsetzung im Prototypen ist somit bewiesen, dass die zuvor genannten Geschäftsfälle machbar sind.
