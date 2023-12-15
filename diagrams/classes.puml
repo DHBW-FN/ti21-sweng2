@@ -14,7 +14,7 @@ class PlagiarismSource extends Source {
     List<PlagiarismOccurrence> occurrences
     +addOccurrence(PlagiarismOccurrence)
     +getPlagiarismLength(): int
-    {static} fromJson(String): PlagiarismCheckResult
+    {static} fromJson(String): PlagiarismSource
 }
 
 class PlagiarismOccurrence {
@@ -22,12 +22,12 @@ class PlagiarismOccurrence {
     int end
     float certainty
     +getPlagiarismLength(): int
-    {static} fromJson(String): PlagiarismCheckResult
+    {static} fromJson(String): PlagiarismOccurrence
 }
 
 class Author {
     String name
-    {static} fromJson(String): PlagiarismCheckResult
+    {static} fromJson(String): Author
 }
 
 class Source {
