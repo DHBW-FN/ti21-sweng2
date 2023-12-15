@@ -2,4 +2,59 @@
 
 
 \chapter{\appendixname}\label{ch:appendixname}
-\lipsum[1-2]
+
+
+\section{Prototyp}\label{sec:prototyp}
+Da dem Auftraggeber nur eine \ac{PDF} geliefert wird, wurde der Code für den Prototypen hier angehängt.
+Sollte der Auftraggeber am Code interessiert sein, kann er sich diesen hier anschauen, oder den Auftragnehmer kontaktieren.
+Auch eine Demonstrationsversion des Prototypen kann auf Anfrage bereitgestellt und vorgeführt werden.
+
+\subsection{Hauptdateien}\label{subsec:hauptdateien}
+\lstinputlisting[caption={Ai Bachelor Checker}, label={lst:ai_bachelor_checker}, language=Python, breaklines=true]{prototype/ai_bachelor_checker.py}
+\pagebreak
+\lstinputlisting[caption={Requirements}, label={lst:requirements}, breaklines=true]{prototype/requirements.txt}
+\pagebreak
+
+\subsection{Controllers}\label{subsec:controllers}
+\lstinputlisting[caption={Controller}, label={lst:controller}, language=Python, breaklines=true]{prototype/controllers/controller.py}
+\pagebreak
+\lstinputlisting[caption={AI Controller}, label={lst:ai_controller}, language=Python, breaklines=true]{prototype/controllers/ai_controller.py}
+\pagebreak
+\lstinputlisting[caption={Response Controller}, label={lst:response_co}, language=Python, breaklines=true]{prototype/controllers/response_controller.py}
+\pagebreak
+
+\subsection{Models}\label{subsec:models}
+\lstinputlisting[caption={Author}, label={lst:authot}, language=Python, breaklines=true]{prototype/models/author.py}
+\pagebreak
+\lstinputlisting[caption={Palgiarism Check Result}, label={lst:palgiarism_check_result}, language=Python, breaklines=true]{prototype/models/plagiarism_check_result.py}
+\pagebreak
+\lstinputlisting[caption={Palgiarism Occurrence}, label={lst:plagiarism_occurrence}, language=Python, breaklines=true]{prototype/models/plagiarism_occurrence.py}
+\pagebreak
+\lstinputlisting[caption={Palgiarism Source}, label={lst:plagiarism_source}, language=Python, breaklines=true]{prototype/models/plagiarism_source.py}
+\pagebreak
+\lstinputlisting[caption={Source}, label={lst:source}, language=Python, breaklines=true]{prototype/models/source.py}
+\pagebreak
+
+\subsection{Schemas}\label{subsec:schemas}
+\lstinputlisting[caption={AI Response Schema}, label={lst:ai-response-schema}, language=json, breaklines=true]{prototype/schemas/ai_response_schema.json}
+\pagebreak
+\lstinputlisting[caption={Info Schema}, label={lst:info-schema}, language=json, breaklines=true]{prototype/schemas/infoSchema.json}
+\pagebreak
+\lstinputlisting[caption={Response Schema}, label={lst:response-schema}, language=json, breaklines=true]{prototype/schemas/responseSchema.json}
+\pagebreak
+
+\subsection{Services}\label{subsec:services}
+\lstinputlisting[caption={AI Service}, label={lst:}, language=Python, breaklines=true]{prototype/services/ai_service.py}
+\pagebreak
+\lstinputlisting[caption={Response Service}, label={lst:response_service}, language=Python, breaklines=true]{prototype/services/response_service.py}
+\pagebreak
+
+\subsection{Utils}\label{subsec:utils2}
+\lstinputlisting[caption={AI Adapter}, label={lst:ai_adapter}, language=Python, breaklines=true]{prototype/utils/ai_adapter.py}
+\pagebreak
+\lstinputlisting[caption={Parser}, label={lst:parser}, language=Python, breaklines=true]{prototype/utils/parser.py}
+\pagebreak
+\lstinputlisting[caption={PDF Parser}, label={lst:pdf_parser}, language=Python, breaklines=true]{prototype/utils/pdf_parser.py}
+\pagebreak
+\lstinputlisting[caption={Json Parser}, label={lst:json_parser}, language=Python, breaklines=true]{prototype/utils/json_parser.py}
+\pagebreak
