@@ -224,7 +224,15 @@ Erklärung der Attribute:
             "type": "string"
           },
           "author": {
-            "type": "string"
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            }
           },
           "occurrences": {
             "type": "array",
