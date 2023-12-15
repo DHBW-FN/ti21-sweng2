@@ -1,0 +1,114 @@
+@startuml Klassendiagramm
+class PlagiarismCheckResult {
+    Author author
+    String thesisText
+    String summary
+    List<PlagiarismSource> sources
+    +addSource(PlagiarismSource)
+    +getCoverage(): float
+    +getPlagiarismLength(): int
+}
+
+class PlagiarismSource extends Source {
+    List<PlagiarismOccurrence> occurrences
+    +addOccurrence(PlagiarismOccurrence)
+    +getPlagiarismLength(): int
+}
+
+class PlagiarismOccurrence {
+    int start
+    int end
+    float certainty
+    +getPlagiarismLength(): int
+}
+
+class Author {
+    String name
+}
+
+class Source {
+    String isbn
+    String title
+    Author author
+}
+
+abstract class Parser {
+    +validate(File)
+    +parse(File)
+}
+
+class PdfParser extends Parser {
+    +validate(File)
+    +parse(File)
+}
+
+class JsonParser extends Parser {
+    Schema schema
+    +validate(File)
+    +parse(File)
+    +validateSchema(Schema)
+}
+
+class Controller {
+    PdfParser pdfParser
+    JsonParser jsonParser
+    AiController aiController
+    ResponseController responseController
+    +check(String, String): String
+    +checkRequestStatus(String): String
+}
+
+class AiController {
+    AiService aiService
+    +check(String, String): PlagiarismCheckResult
+}
+
+class AiService {
+    AiAdapter aiAdapter
+    +check(String, String): PlagiarismCheckResult
+    -generate_setup_prompt(String): String
+}
+
+class AiAdapter {
+    +chat(String): String
+}
+
+class ResponseController {
+    Schema schema
+    ResponseService responseService
+    List<Request> requests
+    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): String
+    +addRequest(String, PlagiarismCheckResult)
+    +checkRequestStatus(String): String
+}
+
+class ResponseService {
+    Schema schema
+    +getJsonFromPlagiarismCheckResult(PlagiarismCheckResult): String
+}
+
+class Request {
+    String uuid
+    PlagiarismCheckResult result
+}
+
+Controller "1" o-- "1" PdfParser
+Controller "1" o-- "1" JsonParser
+Controller "1" o-- "1" AiController
+AiController "1" o-- "1" AiService
+AiService "1" o-- "1" AiAdapter
+Controller "1" o-- "1" ResponseController
+ResponseController "1" o-- "1" ResponseService
+ResponseController "1" o-- "*" Request
+ResponseService "1" o-- "1" JsonParser
+
+PlagiarismCheckResult -- AiController
+PlagiarismCheckResult -- AiService
+PlagiarismCheckResult -- ResponseService
+
+PlagiarismCheckResult "1" o-- "*" PlagiarismSource
+PlagiarismCheckResult "1" o-- "1" Author
+PlagiarismSource "1" o-- "1..*" PlagiarismOccurrence
+PlagiarismSource "1" o-- "1" Author
+PlagiarismCheckResult "1" o-- "1" Request
+@enduml

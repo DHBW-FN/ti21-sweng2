@@ -272,6 +272,18 @@ Sollte der Auftrag in der Zwischenzeit fertig werden, dann wird auf diese regelm
 der Plagiatsprüfung weitergegeben.
 
 % TODO Wie binden wir diese Funktion in unser System ein?
+Eine Integration dieser Funktion in den \ac{AiPC} könnte wie folgt aussehen:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/diagrams/Klassendiagramm_HTTP_202}
+    \caption{Klassendiagramm mit Timeout-Handling}
+    \label{fig:klassendiagramm-mit-timeout-handling}
+\end{figure}
+
+Die Anfragen an den \ac{AiPC} werden hierbei nach wie vor über den selben Endpunkt gestellt.
+Allerdings erhält der BachelorChecker hierbei sofort eine Antwort mit dem HTTP-Statuscode 202 und einer UUID.
+Diese UUID wird intern verwendet um die verschiedenen Anfragen eindeutig zu identifizieren, welche durch die neue Request-Klasse repräsentiert werden.
+Außerdem kann der BachelorChecker diese UUID verwenden, um in regelmäßigen Abständen über einen neuen, zweiten Endpunkt den Status des Auftrags abzufragen.
 
 
 \section{Machbarkeitsbeweis}\label{sec:machbarkeitsbeweis}
