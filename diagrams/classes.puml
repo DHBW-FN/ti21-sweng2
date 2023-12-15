@@ -73,7 +73,7 @@ class AiService {
 }
 
 class AiAdapter {
-    client
+    Object client
     +chat(String): String
 }
 
