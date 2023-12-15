@@ -246,16 +246,16 @@ Die Auswahl beschränkt sich somit auf folgende Modelle
 
 Unter den betrachteten Modellen wird ChatGPT mit GPT-3 für die technische Machbarkeit und den Prototyp ausgewählt.
 Die Entscheidung für dieses Modell basiert auf der Vergabe von OpenAI-API-Keys, was eine kostengünstige und wenig aufwändige Nutzung ermöglicht.
-Zudem zeichnet sich ChatGPT durch seine weite Verbreitung aus, wie aus aktuellen Statistiken hervorgeht \autocite{statista.gpt}.
+Zudem zeichnet sich ChatGPT durch seine weite Verbreitung aus, wie aus aktuellen Statistiken hervorgeht~\autocite{statista.gpt}.
 
-ChatGPT ist eine Ableitung des Large Language Models (LLM) GPT-3 von OpenAI, welches 175 Milliarden Parameter umfasst \autocite[][S. 5]{openai.gpt}.
-Damit ist es das umfangreichste Modell unter den genannten Alternativen \autocite{statista.gpt}.
-Die Trainingsdaten für dieses Modell belaufen sich auf 45 Terabyte komprimierten Texts, was es zu einem der intensivsten und am besten trainierten Modelle in dieser Auswahl macht \autocite[][S. 8]{openai.gpt}.
-Obwohl GPT-3 im Vergleich zu anderen Modellen eine gewisse Geschwindigkeitseinbuße aufweist, zeichnet es sich durch qualitativ überlegene Ergebnisse aus \autocite{mindsdb.llm}.
+ChatGPT ist eine Ableitung des Large Language Models (LLM) GPT-3 von OpenAI, welches 175 Milliarden Parameter umfasst~\autocite[][S. 5]{openai.gpt}.
+Damit ist es das umfangreichste Modell unter den genannten Alternativen~\autocite{statista.gpt}.
+Die Trainingsdaten für dieses Modell belaufen sich auf 45 Terabyte komprimierten Texts, was es zu einem der intensivsten und am besten trainierten Modelle in dieser Auswahl macht~\autocite[][S. 8]{openai.gpt}.
+Obwohl GPT-3 im Vergleich zu anderen Modellen eine gewisse Geschwindigkeitseinbuße aufweist, zeichnet es sich durch qualitativ überlegene Ergebnisse aus~\autocite{mindsdb.llm}.
 
 Für einen produktiven Einsatz empfiehlt der Auftragnehmer GPT-4 zu verwenden.
 Dieses Modell zeichnet sich durch eine erhöhte Verarbeitungsgeschwindigkeit und eine gesteigerte Ergebnisqualität aus.
-Darüber hinaus unterstützt es eine größere Anzahl an Token \autocite{openai.gpt4}, was zu einer erweiterten Fähigkeit führt, auch umfangreichere Texte zu verarbeiten.
+Darüber hinaus unterstützt es eine größere Anzahl an Token~\autocite{openai.gpt4}, was zu einer erweiterten Fähigkeit führt, auch umfangreichere Texte zu verarbeiten.
 Diese Eigenschaft erweist sich als besonders vorteilhaft bei der Verarbeitung von Bachelorarbeiten.
 Ein weiterer Vorteil von GPT-4 liegt in seinem Training mit aktualisierten und umfangreicheren Datensätzen.
 Dies trägt dazu bei, die Qualität der erzeugten Ergebnisse weiter zu steigern.
@@ -285,7 +285,6 @@ welche dieser dann in regelmäßigen Abständen abfragen kann, um den aktuellen 
 Sollte der Auftrag in der Zwischenzeit fertig werden, dann wird auf diese regelmäßigen Abfragen das Ergebnis
 der Plagiatsprüfung weitergegeben.
 
-% TODO Wie binden wir diese Funktion in unser System ein?
 Eine Integration dieser Funktion in den \ac{AiPC} könnte wie folgt aussehen:
 \begin{figure}[H]
     \centering
@@ -295,12 +294,13 @@ Eine Integration dieser Funktion in den \ac{AiPC} könnte wie folgt aussehen:
 \end{figure}
 
 Die Anfragen an den \ac{AiPC} werden hierbei nach wie vor über den selben Endpunkt gestellt.
-Allerdings erhält der BachelorChecker hierbei sofort eine Antwort mit dem HTTP-Statuscode 202 und einer URL.
-Mithilfe dieser URL kann der BachelorChecker in regelmäßigen Abständen den Status der Anfrage abfragen.
+Allerdings erhält der BachelorChecker hierbei sofort eine Antwort mit dem \ac{HTTP-Statuscode} 202 und einer \ac{URL}.
+Mithilfe dieser \ac{URL}Ukann der BachelorChecker in regelmäßigen Abständen den Status der Anfrage abfragen.
 Hierzu wird ein zweiter Endpunkt in dem \ac{AiPC} hinzugefügt.
 Intern wird je eine Anfrage durch eine Instanz der neu hinzugefügten Request-Klasse repräsentiert.
-Dabei wird jede Instanz eindeutig durch eine, während der Plagiatsprüfungsanfrage generierten, UUID identifiziert.
-Diese UUID dient außerdem der Verwaltung der einzelnen Instanzen durch den ResponseController.
+Dabei wird jede Instanz eindeutig durch eine, während der Plagiatsprüfungsanfrage generierten, \ac{UUID} identifiziert.
+Diese \ac{UUID} dient außerdem der Verwaltung der einzelnen Instanzen durch den ResponseController.
+
 
 \section{Machbarkeitsbeweis}\label{sec:machbarkeitsbeweis}
 
